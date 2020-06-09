@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'gray_box.dart';
 
 void main() {
     runApp(MyApp());
@@ -21,12 +22,16 @@ class MyApp extends StatelessWidget {
                 // Notice that the counter didn't reset back to zero; the application
                 // is not restarted.
                 primarySwatch: Colors.red,
+                brightness: Brightness.dark,
+                primaryColor: Colors.black,
+                accentColor: Colors.white,
+                fontFamily: 'Lucida Console',
                 // This makes the visual density adapt to the platform that you run
                 // the app on. For desktop platforms, the controls will be smaller and
                 // closer together (more dense) than on mobile platforms.
                 visualDensity: VisualDensity.adaptivePlatformDensity,
             ),
-            home: MyHomePage(title: 'Flutter Demo Home Page'),
+            home: MyHomePage(title: 'Comparator'),
         );
     }
 }
@@ -72,12 +77,13 @@ class _MyHomePageState extends State<MyHomePage> {
         // fast, so that you can just rebuild anything that needs updating rather
         // than having to individually change instances of widgets.
         return Scaffold(
+            backgroundColor: Colors.black,
             appBar: AppBar(
                 // Here we take the value from the MyHomePage object that was created by
                 // the App.build method, and use it to set our appbar title.
                 title: Text(widget.title),
             ),
-            body: Center(
+            body: SingleChildScrollView(
                 // Center is a layout widget. It takes a single child and positions it
                 // in the middle of the parent.
                 child: Column(
@@ -97,16 +103,31 @@ class _MyHomePageState extends State<MyHomePage> {
                     // horizontal).
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: <Widget>[
-                        Text(
-                            'You have pushed the button this many times:',
-                        ),
-                        Text(
-                            '$_counter',
-                            style: Theme
-                                    .of(context)
-                                    .textTheme
-                                    .headline4,
-                        ),
+                        GrayBox(
+                                child: Text(
+                                    '$_counter',
+                                    style: Theme
+                                            .of(context)
+                                            .textTheme
+                                            .headline4,
+                                )),
+                        GrayBox(
+                                child: Text(
+                                    '$_counter',
+                                    style: Theme
+                                            .of(context)
+                                            .textTheme
+                                            .headline4,
+                                )),
+                        GrayBox(
+                            child: Text(
+                                '$_counter',
+                                style: Theme
+                                        .of(context)
+                                        .textTheme
+                                        .headline4,
+                            ),
+                        )
                     ],
                 ),
             ),
