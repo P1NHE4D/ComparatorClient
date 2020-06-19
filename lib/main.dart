@@ -1,10 +1,23 @@
 import 'package:flutter/material.dart';
-import 'gray_box.dart';
+import 'routes.dart';
 
 void main() {
-    runApp(MyApp());
+    runApp(ComparatorApp());
 }
 
+class ComparatorApp extends StatelessWidget {
+    @override
+    Widget build(BuildContext context) {
+        return new MaterialApp(
+            title: 'Comparator',
+            initialRoute: '/',
+            routes: routes,
+        );
+    }
+}
+
+
+/*
 class MyApp extends StatelessWidget {
     // This widget is the root of your application.
     @override
@@ -138,4 +151,4 @@ class _MyHomePageState extends State<MyHomePage> {
             ), // This trailing comma makes auto-formatting nicer for build methods.
         );
     }
-}
+}*/
