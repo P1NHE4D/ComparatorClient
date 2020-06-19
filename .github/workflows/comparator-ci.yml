@@ -18,15 +18,16 @@ jobs:
         with:
           channel: 'stable'
       - name: install dependencies
-      - run: flutter pub get
+        run: flutter pub get
       - name: perform static code analysis
-      - run: flutter analyze .
+        run: flutter analyze .
       - name: test
-      - run: flutter test
+        run: flutter test
       - name: build
-      - run: flutter build apk
-      - if: github.ref == 'refs/heads/master'
+        run: flutter build apk
+      - name: release
         uses: actions/upload-artifact@v1
+        if: github.ref == 'refs/heads/master'
         with:
-          name: release-apk
+          name: comparator-apk
           path: build/app/outputs/apk/release/comparator.apk
