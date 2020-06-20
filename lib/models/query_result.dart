@@ -16,8 +16,8 @@ class QueryResult {
   final Map<String, ClassifiedData> aspectResults;
   final Map<String, EmotionScores> objAAspectEmotions;
   final Map<String, EmotionScores> objBAspectEmotions;
-  final Map<String, double> objASentimentScores;
-  final Map<String, double> objBSentimentScores;
+  final Map<String, double> objAAspectSentimentScores;
+  final Map<String, double> objBAspectSentimentScores;
   final String message;
 
   QueryResult({
@@ -31,13 +31,27 @@ class QueryResult {
     this.aspectResults,
     this.objAAspectEmotions,
     this.objBAspectEmotions,
-    this.objASentimentScores,
-    this.objBSentimentScores,
+    this.objAAspectSentimentScores,
+    this.objBAspectSentimentScores,
     this.message
   });
 
   factory QueryResult.fromJson(String jsonStr) {
     final _map = jsonDecode(jsonStr);
+    final _aspectResults = Map<String, ClassifiedData>();
+    final _objAAspectEmotions = Map<String, EmotionScores>();
+    final _objBAspectEmotions = Map<String, EmotionScores>();
+
+    (_map['aspectResults'] as Map).forEach((key, value) {
+      _aspectResults[key] = ClassifiedData.fromJson(value);
+    });
+    (_map['_objAAspectEmotions'] as Map).forEach((key, value) {
+      _objAAspectEmotions[key] = EmotionScores.fromJson(value);
+    });
+    (_map['_objBAspectEmotions'] as Map).forEach((key, value) {
+      _objBAspectEmotions[key] = EmotionScores.fromJson(value);
+    });
+
     return QueryResult(
       results: ClassifiedData.fromJson(_map['results']),
       objAKeywords: (_map['objAKeywords'] as List).map((i) => Keyword.fromJson(i)).toList(),
@@ -46,6 +60,11 @@ class QueryResult {
       objBEmotions: EmotionScores.fromJson(_map['objBEmotions']),
       objASentimentScore: _map['objASentimentScore'],
       objBSentimentScore: _map['objBSentimentScore'],
+      aspectResults: _aspectResults,
+      objAAspectEmotions: _objAAspectEmotions,
+      objBAspectEmotions: _objBAspectEmotions,
+      objAAspectSentimentScores: _map['objAAspectSentimentScores'],
+      objBAspectSentimentScores: _map['objBAspectSentimentScores']
     );
   }
 }
