@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:comparator/models/classified_data.dart';
 import 'package:comparator/models/emotion_scores.dart';
 import 'package:comparator/models/keyword.dart';
-import 'package:flutter/cupertino.dart';
 
 class QueryResult {
   final ClassifiedData results;
