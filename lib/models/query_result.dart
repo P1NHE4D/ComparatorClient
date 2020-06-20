@@ -15,8 +15,8 @@ class QueryResult {
   final Map<String, ClassifiedData> aspectResults;
   final Map<String, EmotionScores> objAAspectEmotions;
   final Map<String, EmotionScores> objBAspectEmotions;
-  final Map<String, double> objAAspectSentimentScores;
-  final Map<String, double> objBAspectSentimentScores;
+  final Map<String, dynamic> objAAspectSentimentScores;
+  final Map<String, dynamic> objBAspectSentimentScores;
   final String message;
 
   QueryResult({
@@ -44,10 +44,10 @@ class QueryResult {
     (_map['aspectResults'] as Map).forEach((key, value) {
       _aspectResults[key] = ClassifiedData.fromJson(value);
     });
-    (_map['_objAAspectEmotions'] as Map).forEach((key, value) {
+    (_map['objAAspectEmotions'] as Map).forEach((key, value) {
       _objAAspectEmotions[key] = EmotionScores.fromJson(value);
     });
-    (_map['_objBAspectEmotions'] as Map).forEach((key, value) {
+    (_map['objBAspectEmotions'] as Map).forEach((key, value) {
       _objBAspectEmotions[key] = EmotionScores.fromJson(value);
     });
 
