@@ -37,19 +37,6 @@ class QueryResult {
 
   factory QueryResult.fromJson(String jsonStr) {
     final _map = jsonDecode(jsonStr);
-    final _aspectResults = Map<String, ClassifiedData>();
-    final _objAAspectEmotions = Map<String, EmotionScores>();
-    final _objBAspectEmotions = Map<String, EmotionScores>();
-
-    (_map['aspectResults'] as Map).forEach((key, value) {
-      _aspectResults[key] = ClassifiedData.fromJson(value);
-    });
-    (_map['objAAspectEmotions'] as Map).forEach((key, value) {
-      _objAAspectEmotions[key] = EmotionScores.fromJson(value);
-    });
-    (_map['objBAspectEmotions'] as Map).forEach((key, value) {
-      _objBAspectEmotions[key] = EmotionScores.fromJson(value);
-    });
 
     return QueryResult(
       results: ClassifiedData.fromJson(_map['results']),
@@ -59,9 +46,9 @@ class QueryResult {
       objBEmotions: EmotionScores.fromJson(_map['objBEmotions']),
       objASentimentScore: _map['objASentimentScore'],
       objBSentimentScore: _map['objBSentimentScore'],
-      aspectResults: _aspectResults,
-      objAAspectEmotions: _objAAspectEmotions,
-      objBAspectEmotions: _objBAspectEmotions,
+      aspectResults: (_map['aspectResults'] as Map).map((key, value) => MapEntry(key, ClassifiedData.fromJson(value))),
+      objAAspectEmotions: (_map['objAAspectEmotions'] as Map).map((key, value) => MapEntry(key, EmotionScores.fromJson(value))),
+      objBAspectEmotions: (_map['objBAspectEmotions'] as Map).map((key, value) => MapEntry(key, EmotionScores.fromJson(value))),
       objAAspectSentimentScores: _map['objAAspectSentimentScores'],
       objBAspectSentimentScores: _map['objBAspectSentimentScores']
     );
