@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 
 class Box extends StatelessWidget {
   final Widget title;
-  final List<Widget> children;
+  final Widget child;
   final Color backgroundColor;
 
-  Box({this.title, this.children, this.backgroundColor});
+  Box({this.title, this.child, this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
@@ -25,9 +25,7 @@ class Box extends StatelessWidget {
                 child: Container(
                   width: double.infinity,
                   padding: EdgeInsets.all(12),
-                  child: Column(
-                    children: children,
-                  ),
+                  child: child
                 ))
           ],
         ));
