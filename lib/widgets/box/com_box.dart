@@ -1,12 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Box extends StatelessWidget {
+class ComBox extends StatelessWidget {
   final Widget title;
   final Widget child;
   final Color backgroundColor;
 
-  Box({this.title, this.child, this.backgroundColor});
+  ComBox({this.title, this.child, this.backgroundColor});
 
   @override
   Widget build(BuildContext context) {
