@@ -10,7 +10,7 @@ class ComProgressBar extends StatelessWidget {
     final double height;
 
     ComProgressBar({
-        this.title,
+        @required this.title,
         this.barColor = const Color.fromARGB(0xff, 0x00, 0x00, 0x00),
         @required this.value,
         this.height = 20.0
