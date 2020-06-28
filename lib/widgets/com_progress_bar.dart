@@ -18,23 +18,22 @@ class ComProgressBar extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
-        return Container(
-                child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                        title,
-                        SizedBox(height: 8),
-                        LinearPercentIndicator(
-                            animation: true,
-                            lineHeight: height,
-                            animationDuration: 500,
-                            percent: value,
-                            linearStrokeCap: LinearStrokeCap.roundAll,
-                            progressColor: barColor,
-                            backgroundColor: Color.fromARGB(0xff, 0x18, 0x18, 0x18),
-                        )
-                    ],
-                ));
+        return Column(
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+                title,
+                SizedBox(height: 8),
+                LinearPercentIndicator(
+                    animation: true,
+                    lineHeight: height,
+                    animationDuration: 500,
+                    percent: value,
+                    linearStrokeCap: LinearStrokeCap.roundAll,
+                    progressColor: barColor,
+                    backgroundColor: Color.fromARGB(0xff, 0x18, 0x18, 0x18),
+                )
+            ],
+        );
     }
 }
