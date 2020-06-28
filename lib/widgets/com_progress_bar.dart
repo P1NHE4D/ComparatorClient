@@ -5,9 +5,16 @@ import 'package:percent_indicator/linear_percent_indicator.dart';
 class ComProgressBar extends StatelessWidget {
     final Widget title;
     final Color barColor;
-    final double value;
 
-    ComProgressBar({this.title, this.barColor, this.value});
+    final double value;
+    final double height;
+
+    ComProgressBar({
+        this.title,
+        this.barColor = const Color.fromARGB(0xff, 0x00, 0x00, 0x00),
+        this.value = 0.0,
+        this.height = 20.0
+    });
 
     @override
     Widget build(BuildContext context) {
@@ -20,7 +27,7 @@ class ComProgressBar extends StatelessWidget {
                         SizedBox(height: 8),
                         LinearPercentIndicator(
                             animation: true,
-                            lineHeight: 20.0,
+                            lineHeight: height,
                             animationDuration: 500,
                             percent: value,
                             linearStrokeCap: LinearStrokeCap.roundAll,
