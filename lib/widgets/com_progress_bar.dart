@@ -10,7 +10,7 @@ class ComProgressBar extends StatelessWidget {
     final double value;
     final double height;
 
-    double get percent => value * 100.0;
+    String get percent => (value * 100.0).toStringAsFixed(1);
 
     ComProgressBar({
         @required this.title,
@@ -33,7 +33,7 @@ class ComProgressBar extends StatelessWidget {
                     lineHeight: height,
                     animationDuration: 500,
                     percent: value,
-                    center: new Text("$percent %", style: TextStyle(color: textColor),),     // TODO Anpassende Farbe (Siehe COM-74)
+                    center: new Text("$percent %", style: TextStyle(color: textColor)),
                     linearStrokeCap: LinearStrokeCap.roundAll,
                     progressColor: barColor,
                     backgroundColor: Color.fromARGB(0xff, 0x18, 0x18, 0x18),
