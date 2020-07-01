@@ -57,11 +57,10 @@ class QueryScreen extends StatelessWidget {
                       icon: Icon(Icons.send, color: Colors.white, size: 30.0,),
                       onPressed: () {
                         if(_formKey.currentState.validate()) {
-                          Provider.of<QueryModel>(context, listen: false).objA = _objAcontroller.text;
-                          Provider.of<QueryModel>(context, listen: false).objB = _objBcontroller.text;
-                          Navigator.pushNamed(context, '/results');
+                          Provider.of<QueryModel>(context, listen: false).setObjects(_objAcontroller.text, _objBcontroller.text);
                           _objAcontroller.clear();
                           _objBcontroller.clear();
+                          Navigator.pushNamed(context, '/results');
                         }
                       },
                     )

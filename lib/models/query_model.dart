@@ -9,15 +9,11 @@ class QueryModel extends ChangeNotifier {
   String get objA => _objA;
   String get objB => _objB;
 
-  set objA(String obj) {
-    assert(obj != null);
-    _objA = obj;
-    notifyListeners();
-  }
-
-  set objB(String obj) {
-    assert(obj != null);
-    _objB = obj;
+  void setObjects(String objA, String objB) {
+    assert(objA != null);
+    assert(objB != null);
+    _objA = objA;
+    _objB = objB;
     notifyListeners();
   }
 
