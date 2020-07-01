@@ -1,5 +1,4 @@
-
-import 'package:comparator/models/aspect_list_model.dart';
+import 'package:comparator/models/query_model.dart';
 import 'package:comparator/widgets/com_box.dart';
 import 'package:comparator/widgets/com_text_form_field.dart';
 import 'package:flutter/cupertino.dart';
@@ -44,14 +43,14 @@ class _AspectSelectorState extends State<AspectSelector> {
           color: Color.fromRGBO(207, 10, 10, 1),
         ),
         onPressed: () {
-          Provider.of<AspectListModel>(context, listen: false).remove(aspect);
+          Provider.of<QueryModel>(context, listen: false).removeAspect(aspect);
         },
       ),
     );
   }
 
   Widget _buildAspectList() {
-    List<String> _aspects = Provider.of<AspectListModel>(context).aspects;
+    List<String> _aspects = Provider.of<QueryModel>(context).aspects;
 
     return ListView.separated(
       padding: EdgeInsets.all(0),
@@ -69,7 +68,6 @@ class _AspectSelectorState extends State<AspectSelector> {
       ),
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -90,7 +88,7 @@ class _AspectSelectorState extends State<AspectSelector> {
                           controller: _controller,
                           validator: _validateInput,
                           label: 'Add aspect',
-                        )
+                      )
                     ),
                     IconButton(
                       icon: Icon(
@@ -99,7 +97,8 @@ class _AspectSelectorState extends State<AspectSelector> {
                       ),
                       onPressed: () {
                         if (_formKey.currentState.validate()) {
-                          Provider.of<AspectListModel>(context, listen: false).add(_controller.text);
+                          Provider.of<QueryModel>(context, listen: false)
+                              .addAspect(_controller.text);
                           _controller.clear();
                         }
                       },
@@ -108,7 +107,7 @@ class _AspectSelectorState extends State<AspectSelector> {
                 ),
               )
           ),
-          Consumer<AspectListModel>(
+          Consumer<QueryModel>(
             builder: (context, aspectModel, child) {
               return _buildAspectList();
             },
