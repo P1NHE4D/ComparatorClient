@@ -1,6 +1,5 @@
-import 'package:comparator/models/aspect_list_model.dart';
+import 'package:comparator/models/query_model.dart';
 import 'package:comparator/screens/query_screen/widgets/aspect_selector.dart';
-import 'package:comparator/services/comparator_api.dart';
 import 'package:comparator/widgets/com_text_form_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -58,10 +57,9 @@ class QueryScreen extends StatelessWidget {
                       icon: Icon(Icons.send, color: Colors.white, size: 30.0,),
                       onPressed: () {
                         if(_formKey.currentState.validate()) {
-                          //List<String> aspects = Provider.of<AspectListModel>(context, listen: false).aspects;
-                          //sendQuery(_objAcontroller.text, _objBcontroller.text, aspects);
-                          // TODO: Switch to loading screen
-                          Provider.of<AspectListModel>(context, listen: false).removeAll();
+                          Provider.of<QueryModel>(context, listen: false).objA = _objAcontroller.text;
+                          Provider.of<QueryModel>(context, listen: false).objB = _objBcontroller.text;
+                          Navigator.pushNamed(context, '/results');
                           _objAcontroller.clear();
                           _objBcontroller.clear();
                         }
