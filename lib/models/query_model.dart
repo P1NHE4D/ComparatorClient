@@ -23,18 +23,20 @@ class QueryModel extends ChangeNotifier {
 
   UnmodifiableListView<String> get aspects => UnmodifiableListView(_aspects);
 
-  void add(String aspect) {
+  void addAspect(String aspect) {
     _aspects.add(aspect);
     notifyListeners();
   }
 
-  void remove(String aspect) {
+  void removeAspect(String aspect) {
     _aspects.remove(aspect);
     notifyListeners();
   }
 
-  void removeAll() {
+  void resetModel() {
     _aspects.clear();
+    _objA = '';
+    _objB = '';
     notifyListeners();
   }
 }
