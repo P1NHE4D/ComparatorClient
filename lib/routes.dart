@@ -6,9 +6,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 final Map<String, WidgetBuilder> routes = <String, WidgetBuilder>{
-  '/': (BuildContext context) => ChangeNotifierProvider(
-    create: (context) => QueryModel(),
-    child: QueryScreen(),
-  ),
+  '/': (BuildContext context) => QueryScreen(),
   '/results': (BuildContext context) => QueryResultScreen()
 };
