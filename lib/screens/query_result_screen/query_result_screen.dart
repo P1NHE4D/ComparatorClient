@@ -1,10 +1,10 @@
 import 'dart:async';
-import 'package:comparator/models/emotion_scores.dart';
 import 'package:comparator/models/query_model.dart';
 import 'package:comparator/models/query_result.dart';
+import 'package:comparator/screens/query_result_screen/widgets/object_com_box.dart';
+import 'package:comparator/screens/query_result_screen/widgets/results_com_box.dart';
 import 'package:comparator/services/comparator_api.dart';
 import 'package:comparator/widgets/com_box.dart';
-import 'package:comparator/widgets/com_progress_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -77,77 +77,6 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
     );
   }
 
-  Widget _buildTextRow(String title, String content, Color color) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(title, style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        Text(content, style: TextStyle(color: color, fontSize: 14))
-      ],
-    );
-  }
-
-  Widget _buildResultsComBox(int dataCount, double objATendency, double objBTendency) {
-    return ComBox(
-      title: Text('Results', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18)),
-      backgroundColor: Color.fromRGBO(48, 48, 48, 1),
-      child: Column(
-        children: [
-          _buildTextRow('Processed data sets:', dataCount.toString(), Colors.yellowAccent),
-          _buildTextRow('Elapsed time:', '$_minutes m ${_secs < 10 ? '0$_secs' : _secs} s', Colors.yellowAccent),
-          _buildTextRow('Users prefer:', objATendency > objBTendency ? _objA : objATendency < objBTendency ? _objB : 'Draw', Colors.green),
-          //TODO: display popularity of both objects
-        ],
-      )
-    );
-  }
-
-  List<Widget> _buildProgressBars(double tendency, double sentimentScore, EmotionScores scores) {
-    return [
-      ComProgressBar(
-        title: Text('Popularity', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        barColor: tendency < 0.5 ? Colors.red : tendency == 0.5 ? Colors.blueAccent : Colors.green,
-        value: tendency,
-      ),
-      //TODO: add tendency bar for sentiment scores
-      ComProgressBar(
-        title: Text('Anger', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        barColor: Colors.indigo,
-        value: scores.anger,
-      ),
-      ComProgressBar(
-        title: Text('Disgust', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        barColor: Colors.indigo,
-        value: scores.disgust,
-      ),
-      ComProgressBar(
-        title: Text('Fear', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        barColor: Colors.indigo,
-        value: scores.fear,
-      ),
-      ComProgressBar(
-        title: Text('Joy', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        barColor: Colors.indigo,
-        value: scores.joy,
-      ),
-      ComProgressBar(
-        title: Text('Sadness', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        barColor: Colors.indigo,
-        value: scores.sadness,
-      ),
-    ];
-  }
-
-  Widget _buildObjectComBox(String objName, double tendency, double sentimentScore, EmotionScores emotionScores) {
-    return ComBox(
-      title: Text(objName, style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18)),
-      backgroundColor: Color.fromRGBO(48, 48, 48, 1),
-      child: Column(
-        children: _buildProgressBars(tendency, sentimentScore, emotionScores),
-      ),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -164,9 +93,24 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
             return SingleChildScrollView(
               child: Column(
                   children: [
-                    _buildResultsComBox(snapshot.data.results.dataCount, snapshot.data.results.objATendency, snapshot.data.results.objBTendency),
-                    _buildObjectComBox(_objA, snapshot.data.results.objATendency, snapshot.data.objASentimentScore, snapshot.data.objAEmotions),
-                    _buildObjectComBox(_objB, snapshot.data.results.objBTendency, snapshot.data.objBSentimentScore, snapshot.data.objBEmotions)
+                    ResultsComBox(
+                        dataCount: snapshot.data.results.dataCount,
+                        objATendency: snapshot.data.results.objATendency,
+                        objBTendency: snapshot.data.results.objBTendency,
+                        elapsedTime: DateTime.fromMillisecondsSinceEpoch(_elapsedSeconds * 1000),
+                    ),
+                    ObjectComBox(
+                        objName: _objA,
+                        tendency: snapshot.data.results.objATendency,
+                        sentimentScore: snapshot.data.objASentimentScore,
+                        emotionScores: snapshot.data.objAEmotions,
+                    ),
+                    ObjectComBox(
+                        objName: _objB,
+                        tendency: snapshot.data.results.objBTendency,
+                        sentimentScore: snapshot.data.objBSentimentScore,
+                        emotionScores: snapshot.data.objBEmotions
+                    ),
                   ]
               ),
             );
