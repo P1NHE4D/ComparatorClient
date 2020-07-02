@@ -28,6 +28,7 @@ class ObjectComBox extends StatelessWidget {
 
     return [
       buildProgressBar('Popularity', tendency < 0.5 ? Colors.red : tendency == 0.5 ? Colors.blueAccent : Colors.green, tendency),
+      //TODO: add sentiment score
       buildProgressBar('Anger', Colors.indigo, scores.anger),
       buildProgressBar('Disgust', Colors.indigo, scores.disgust),
       buildProgressBar('Fear', Colors.indigo, scores.fear),
