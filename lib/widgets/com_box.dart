@@ -67,19 +67,19 @@ class _ComBoxState extends State<ComBox> {
                 setState(() {
                   _isPressed = true;
                 });
-                widget.onTapDown();
+                if(widget.onTapDown != null) widget.onTapDown();
               },
               onTapUp: (d) {
                 setState(() {
                   _isPressed = false;
                 });
-                widget.onTapUp();
+                if(widget.onTapUp != null) widget.onTapUp();
               },
               onTapCancel: () {
                 setState(() {
                   _isPressed = false;
                 });
-                widget.onTapCancel();
+                if(widget.onTapCancel != null) widget.onTapCancel();
               },
               child: _buildComBox()
             )

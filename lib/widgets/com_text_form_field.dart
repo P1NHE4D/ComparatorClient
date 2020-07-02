@@ -3,12 +3,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class ComTextFormField extends StatelessWidget {
-  final TextEditingController controller;
   final TextInputAction inputAction;
-  final Function(String) validator;
   final String label;
+  final FormFieldValidator<String> validator;
+  final String initialValue;
+  final TextEditingController controller;
 
-  ComTextFormField({@required this.controller, this.validator, this.label, this.inputAction = TextInputAction.done});
+  ComTextFormField({
+    this.validator,
+    this.controller,
+    this.initialValue,
+    this.label,
+    this.inputAction = TextInputAction.done
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -36,5 +43,4 @@ class ComTextFormField extends StatelessWidget {
       ),
     );
   }
-
 }

@@ -1,7 +1,7 @@
 class ClassifiedData {
-  final int dataCount;
-  final double objATendency;
-  final double objBTendency;
+  final num dataCount;
+  final num objATendency;
+  final num objBTendency;
   final List objAData;
   final List objBData;
 
