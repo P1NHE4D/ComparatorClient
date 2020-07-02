@@ -5,12 +5,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class AspectSelector extends StatefulWidget {
+class AspectListView extends StatefulWidget {
   @override
-  _AspectSelectorState createState() => _AspectSelectorState();
+  _AspectListViewState createState() => _AspectListViewState();
 }
 
-class _AspectSelectorState extends State<AspectSelector> {
+class _AspectListViewState extends State<AspectListView> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _controller = TextEditingController();
   final RegExp _regExp = new RegExp(r"^\w+$");

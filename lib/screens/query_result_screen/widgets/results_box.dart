@@ -4,13 +4,13 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class ResultsComBox extends StatelessWidget {
+class ResultBox extends StatelessWidget {
   final int dataCount;
   final double objATendency;
   final double objBTendency;
   final DateTime elapsedTime;
 
-  ResultsComBox({
+  ResultBox({
     @required this.dataCount,
     @required this.objATendency,
     @required this.objBTendency,

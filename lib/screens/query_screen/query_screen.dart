@@ -1,5 +1,5 @@
 import 'package:comparator/models/query_model.dart';
-import 'package:comparator/screens/query_screen/widgets/aspect_selector.dart';
+import 'package:comparator/screens/query_screen/widgets/aspect_list_view.dart';
 import 'package:comparator/widgets/com_text_form_field.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -67,7 +67,7 @@ class QueryScreen extends StatelessWidget {
                   ],
                 ),
               ),
-              AspectSelector(),
+              AspectListView(),
             ],
           ),
         ),

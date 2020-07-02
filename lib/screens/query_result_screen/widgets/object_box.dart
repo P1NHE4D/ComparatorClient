@@ -4,13 +4,13 @@ import 'package:comparator/widgets/com_progress_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ObjectComBox extends StatelessWidget {
+class ObjectBox extends StatelessWidget {
   final String objName;
   final double tendency;
   final double sentimentScore;
   final EmotionScores emotionScores;
 
-  ObjectComBox({
+  ObjectBox({
     @required this.objName,
     @required this.tendency,
     @required this.sentimentScore,

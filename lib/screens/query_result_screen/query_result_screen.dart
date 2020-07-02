@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'package:comparator/models/query_model.dart';
 import 'package:comparator/models/query_result.dart';
-import 'package:comparator/screens/query_result_screen/widgets/object_com_box.dart';
-import 'package:comparator/screens/query_result_screen/widgets/results_com_box.dart';
+import 'package:comparator/screens/query_result_screen/widgets/object_box.dart';
+import 'package:comparator/screens/query_result_screen/widgets/results_box.dart';
 import 'package:comparator/services/comparator_api.dart';
 import 'package:comparator/widgets/com_box.dart';
 import 'package:flutter/cupertino.dart';
@@ -93,19 +93,19 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
             return SingleChildScrollView(
               child: Column(
                   children: [
-                    ResultsComBox(
+                    ResultBox(
                         dataCount: snapshot.data.results.dataCount,
                         objATendency: snapshot.data.results.objATendency,
                         objBTendency: snapshot.data.results.objBTendency,
                         elapsedTime: DateTime.fromMillisecondsSinceEpoch(_elapsedSeconds * 1000),
                     ),
-                    ObjectComBox(
+                    ObjectBox(
                         objName: _objA,
                         tendency: snapshot.data.results.objATendency,
                         sentimentScore: snapshot.data.objASentimentScore,
                         emotionScores: snapshot.data.objAEmotions,
                     ),
-                    ObjectComBox(
+                    ObjectBox(
                         objName: _objB,
                         tendency: snapshot.data.results.objBTendency,
                         sentimentScore: snapshot.data.objBSentimentScore,
