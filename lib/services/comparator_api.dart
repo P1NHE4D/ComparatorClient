@@ -15,8 +15,6 @@ Future<QueryResult> sendQuery(String objA, String objB, List<String> aspects) as
       HttpHeaders.contentTypeHeader: 'application/json'
     }).timeout(Duration(seconds: 300));
 
-    print(response.statusCode);
-
     if(response.statusCode == 200) {
       return QueryResult.fromJson(response.body);
     }
