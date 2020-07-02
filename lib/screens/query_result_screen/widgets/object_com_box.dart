@@ -18,38 +18,21 @@ class ObjectComBox extends StatelessWidget {
   });
 
   List<Widget> _buildProgressBars(double tendency, double sentimentScore, EmotionScores scores) {
+    Widget buildProgressBar(String title, Color color, double value) {
+      return ComProgressBar(
+        title: Text(title, style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
+        barColor: color,
+        value: value,
+      );
+    }
+
     return [
-      ComProgressBar(
-        title: Text('Popularity', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        barColor: tendency < 0.5 ? Colors.red : tendency == 0.5 ? Colors.blueAccent : Colors.green,
-        value: tendency,
-      ),
-      //TODO: add tendency bar for sentiment scores
-      ComProgressBar(
-        title: Text('Anger', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        barColor: Colors.indigo,
-        value: scores.anger,
-      ),
-      ComProgressBar(
-        title: Text('Disgust', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        barColor: Colors.indigo,
-        value: scores.disgust,
-      ),
-      ComProgressBar(
-        title: Text('Fear', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        barColor: Colors.indigo,
-        value: scores.fear,
-      ),
-      ComProgressBar(
-        title: Text('Joy', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        barColor: Colors.indigo,
-        value: scores.joy,
-      ),
-      ComProgressBar(
-        title: Text('Sadness', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        barColor: Colors.indigo,
-        value: scores.sadness,
-      ),
+      buildProgressBar('Popularity', tendency < 0.5 ? Colors.red : tendency == 0.5 ? Colors.blueAccent : Colors.green, tendency),
+      buildProgressBar('Anger', Colors.indigo, scores.anger),
+      buildProgressBar('Disgust', Colors.indigo, scores.disgust),
+      buildProgressBar('Fear', Colors.indigo, scores.fear),
+      buildProgressBar('Joy', Colors.indigo, scores.joy),
+      buildProgressBar('Sadness', Colors.indigo, scores.sadness)
     ];
   }
 
@@ -63,5 +46,4 @@ class ObjectComBox extends StatelessWidget {
       ),
     );
   }
-
 }
