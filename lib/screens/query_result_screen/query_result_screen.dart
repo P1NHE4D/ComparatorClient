@@ -111,6 +111,7 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
                         sentimentScore: snapshot.data.objBSentimentScore,
                         emotionScores: snapshot.data.objBEmotions
                     ),
+                    //TODO: add AspectResultsComBox widget
                   ]
               ),
             );
