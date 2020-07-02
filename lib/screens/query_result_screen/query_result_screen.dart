@@ -82,7 +82,7 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(0, 0, 0, 1),
       appBar: AppBar(
-        backgroundColor: Color.fromRGBO(25, 25, 25, 1),
+        backgroundColor: Color.fromRGBO(0, 0, 0, 1),
         elevation: 0.0,
       ),
       body: FutureBuilder<QueryResult>(
