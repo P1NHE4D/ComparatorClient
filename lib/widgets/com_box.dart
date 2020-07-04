@@ -59,8 +59,8 @@ class _ComBoxState extends State<ComBox> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            widget.title,
-            SizedBox(height: 6),
+            if (widget.title != null) widget.title,
+            if (widget.title != null) SizedBox(height: 6),
             GestureDetector(
               onTap: widget.onTap,
               onTapDown: (d) {

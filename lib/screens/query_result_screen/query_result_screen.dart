@@ -80,65 +80,67 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(0, 0, 0, 1),
-      appBar: AppBar(
         backgroundColor: Color.fromRGBO(0, 0, 0, 1),
-        elevation: 0.0,
-      ),
-      body: FutureBuilder<QueryResult>(
-        future: queryResult,
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            _timer.cancel();
-            return SingleChildScrollView(
-              child: Column(
-                  children: [
-                    ResultBox(
+        appBar: AppBar(
+          backgroundColor: Color.fromRGBO(0, 0, 0, 1),
+          elevation: 0.0,
+        ),
+        body: FutureBuilder<QueryResult>(
+          future: queryResult,
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              _timer.cancel();
+              return SingleChildScrollView(
+                child: Column(
+                    children: [
+                      ResultBox(
                         dataCount: snapshot.data.results.dataCount,
                         objATendency: snapshot.data.results.objATendency,
                         objBTendency: snapshot.data.results.objBTendency,
                         elapsedTime: DateTime.fromMillisecondsSinceEpoch(_elapsedSeconds * 1000),
-                    ),
-                    ObjectBox(
+                      ),
+                      ObjectBox(
                         objName: _objA,
                         tendency: snapshot.data.results.objATendency,
                         sentimentScore: snapshot.data.objASentimentScore,
                         emotionScores: snapshot.data.objAEmotions,
-                    ),
-                    ObjectBox(
+                        sentences: snapshot.data.results.objAData,
+                      ),
+                      ObjectBox(
                         objName: _objB,
                         tendency: snapshot.data.results.objBTendency,
                         sentimentScore: snapshot.data.objBSentimentScore,
-                        emotionScores: snapshot.data.objBEmotions
+                        emotionScores: snapshot.data.objBEmotions,
+                        sentences: snapshot.data.results.objBData,
+                      ),
+                      //TODO: add AspectResultsComBox widget
+                    ]
+                ),
+              );
+            } else if (snapshot.hasError) {
+              return _buildErrorWidget(snapshot.error.toString());
+            }
+            return Container(
+              width: double.infinity,
+              child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    CircularProgressIndicator(
+                      valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
                     ),
-                    //TODO: add AspectResultsComBox widget
+                    SizedBox(height: 10),
+                    SizedBox(
+                      child: Text(
+                          '${_minutes < 10 ? '0$_minutes' : _minutes}:${_secs < 10 ? '0$_secs' : _secs}',
+                          style: TextStyle(color: Colors.white, fontSize: 16)
+                      ),
+                    )
                   ]
               ),
             );
-          } else if (snapshot.hasError) {
-            return _buildErrorWidget(snapshot.error.toString());
-          }
-          return Container(
-            width: double.infinity,
-            child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(
-                    valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-                  ),
-                  SizedBox(height: 10),
-                  SizedBox(
-                    child: Text(
-                        '${_minutes < 10 ? '0$_minutes' : _minutes}:${_secs < 10 ? '0$_secs' : _secs}',
-                        style: TextStyle(color: Colors.white, fontSize: 16)
-                    ),
-                  )
-                ]
-            ),
-          );
-        },
-      )
+          },
+        )
     );
   }
 }
