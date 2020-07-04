@@ -1,4 +1,5 @@
 import 'package:comparator/models/emotion_scores.dart';
+import 'package:comparator/screens/sentence_list_screen/sentence_list_screen.dart';
 import 'package:comparator/widgets/com_box.dart';
 import 'package:comparator/widgets/com_progress_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -9,12 +10,14 @@ class ObjectBox extends StatelessWidget {
   final double tendency;
   final double sentimentScore;
   final EmotionScores emotionScores;
+  final List<String> sentences;
 
   ObjectBox({
     @required this.objName,
     @required this.tendency,
     @required this.sentimentScore,
-    @required this.emotionScores
+    @required this.emotionScores,
+    @required this.sentences
   });
 
   List<Widget> _buildProgressBars(double tendency, double sentimentScore, EmotionScores scores) {
@@ -45,6 +48,7 @@ class ObjectBox extends StatelessWidget {
       child: Column(
         children: _buildProgressBars(tendency, sentimentScore, emotionScores),
       ),
+      onTap: () => Navigator.push(context, MaterialPageRoute(builder: (context) => SentenceListScreen(sentences: sentences, title: objName,))),
     );
   }
 }
