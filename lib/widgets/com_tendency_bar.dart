@@ -3,17 +3,19 @@ import 'dart:math';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+
+import 'com_progress_bar.dart';
 
 class ComTendencyBar extends StatelessWidget {
     final Widget title;
     final Color barColor;
     final Color textColor;
     final Color backgroundColor;
+    final EdgeInsets padding;
 
     final double leftValue;
     final double rightValue;
-    final double height;
+    final double barHeight;
 
     double get leftRelative => leftValue / (leftValue + rightValue);
 
@@ -27,102 +29,80 @@ class ComTendencyBar extends StatelessWidget {
 
     double get rightAbs => max((rightRelative - 0.5) * 2.0, 0.0);
 
-    String get leftAbsString => leftAbs.toStringAsFixed(1);
-
-    String get rightAbsString => rightAbs.toStringAsFixed(1);
-
     ComTendencyBar({
         @required this.title,
         this.barColor = const Color.fromARGB(0xff, 0x00, 0x00, 0x00),
         this.textColor = const Color.fromARGB(0xff, 0xff, 0xff, 0xff),
         this.backgroundColor = const Color.fromARGB(0xff, 0x18, 0x18, 0x18),
+        this.padding = const EdgeInsets.all(0.0),
         @required this.leftValue,
         @required this.rightValue,
-        this.height = 20.0
+        this.barHeight = 20.0
     });
 
     @override
     Widget build(BuildContext context) {
-        return Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-                title,
-                SizedBox(height: 8),
-                Stack(
+        return Padding(
+                padding: padding,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                        Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
+                        title,
+                        Stack(
                             children: [
-                                Expanded(
-                                        child:
-                                        Transform.rotate(
-                                            angle: pi,
-                                            child: LinearPercentIndicator(
-                                                animation: true,
-                                                lineHeight: height,
-                                                animationDuration: 500,
-                                                percent: leftAbs,
-                                                center: Transform.rotate(
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                        Expanded(
+                                                child: Transform.rotate(
                                                     angle: pi,
-                                                    child: Text(
-                                                            "$leftPercentString % - $leftAbsString",
-                                                            style: TextStyle(color: textColor)),
-                                                ),
-                                                linearStrokeCap: LinearStrokeCap.roundAll,
-                                                progressColor: barColor,
+                                                    child: ComProgressBar(
+                                                        title: SizedBox(height: 0),
+                                                        barHeight: barHeight,
+                                                        value: leftAbs,
+                                                        showText: false,
+                                                        barColor: barColor,
+                                                        backgroundColor: backgroundColor,
+                                                        cornerRadius: BorderRadius.only(
+                                                                topLeft: Radius.circular(0),
+                                                                bottomLeft: Radius.circular(0),
+                                                                topRight: Radius.circular(10),
+                                                                bottomRight: Radius.circular(10)
+                                                        ),
+                                                    ),
+                                                )
+                                        ),
+                                        Expanded(
+                                            child: ComProgressBar(
+                                                title: SizedBox(height: 0),
+                                                barHeight: barHeight,
+                                                value: rightAbs,
+                                                showText: false,
+                                                barColor: barColor,
                                                 backgroundColor: backgroundColor,
+                                                cornerRadius: BorderRadius.only(
+                                                        topLeft: Radius.circular(0),
+                                                        bottomLeft: Radius.circular(0),
+                                                        topRight: Radius.circular(10),
+                                                        bottomRight: Radius.circular(10)
+                                                ),
                                             ),
                                         )
+                                    ],
                                 ),
-                                Expanded(
-                                    child: LinearPercentIndicator(
-                                        animation: true,
-                                        lineHeight: height,
-                                        animationDuration: 500,
-                                        percent: rightAbs,
-                                        center: new Text(
-                                                "$rightPercentString % - $rightAbsString",
-                                                style: TextStyle(color: textColor)),
-                                        linearStrokeCap: LinearStrokeCap.roundAll,
-                                        progressColor: barColor,
-                                        backgroundColor: backgroundColor,
-                                    ),
-                                )
                             ],
                         ),
-
-                        Center(
-                            child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                children: [
-                                    Container(
-                                            height: height,
-                                            width: height / 2.0,
-                                            color: Colors.transparent,
-                                            child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: (leftAbs > 0.0) ? barColor : backgroundColor,),
-                                                //  borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                                            )
-                                    ),
-                                    Container(
-                                            height: height,
-                                            width: height / 2.0,
-                                            color: Colors.transparent,
-                                            child: Container(
-                                                decoration: BoxDecoration(
-                                                    color: (rightAbs > 0.0) ? barColor : backgroundColor,),
-                                                //  borderRadius: BorderRadius.all(Radius.circular(10.0))),
-                                            )
-                                    ),
-                                ],
-                            ),
-
+//                SizedBox(height: 4),
+                        Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                                Text("$leftPercentString %"),
+                                Text("$rightPercentString %")
+                            ],
                         )
                     ],
                 )
-            ],
         );
     }
 }
