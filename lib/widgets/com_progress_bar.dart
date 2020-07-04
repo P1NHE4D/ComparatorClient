@@ -17,7 +17,6 @@ class ComProgressBar extends StatelessWidget {
 
     String get valuePercentString => (value * 100.0).toStringAsFixed(1);
 
-
     ComProgressBar({
         @required this.title,
         this.barColor = const Color.fromARGB(0xff, 0x00, 0x00, 0x00),

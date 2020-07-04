@@ -1,9 +1,9 @@
 class EmotionScores {
-  final double anger;
-  final double disgust;
-  final double fear;
-  final double joy;
-  final double sadness;
+  final num anger;
+  final num disgust;
+  final num fear;
+  final num joy;
+  final num sadness;
 
   EmotionScores({this.anger, this.disgust, this.fear, this.joy, this.sadness});
 

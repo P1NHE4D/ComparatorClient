@@ -1,9 +1,9 @@
 class ClassifiedData {
-  final int dataCount;
-  final double objATendency;
-  final double objBTendency;
-  final List objAData;
-  final List objBData;
+  final num dataCount;
+  final num objATendency;
+  final num objBTendency;
+  final List<String> objAData;
+  final List<String> objBData;
 
   ClassifiedData({
     this.dataCount,
@@ -18,8 +18,8 @@ class ClassifiedData {
       dataCount: json['dataCount'].toInt(),
       objATendency: json['objATendency'],
       objBTendency: json['objBTendency'],
-      objAData: json['objAData'],
-      objBData: json['objBData']
+      objAData: (json['objAData'] as List).map((e) => e.toString()).toList(),
+      objBData: (json['objBData'] as List).map((e) => e.toString()).toList()
     );
   }
 }

@@ -1,7 +1,7 @@
 class Keyword {
   final String text;
-  final double relevance;
-  final double sentiment;
+  final num relevance;
+  final num sentiment;
 
   Keyword({this.text, this.relevance, this.sentiment});
 
