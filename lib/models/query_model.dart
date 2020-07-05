@@ -41,6 +41,7 @@ class QueryModel extends ChangeNotifier {
     _aspects.clear();
     _objA = '';
     _objB = '';
+    _quickSearch = true;
     notifyListeners();
   }
 }

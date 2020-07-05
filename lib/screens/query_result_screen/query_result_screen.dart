@@ -42,6 +42,7 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
     _objA = queryModelState.objA;
     _objB = queryModelState.objB;
     queryResult = sendQuery(queryModelState.objA, queryModelState.objB, queryModelState.aspects, queryModelState.quickSearch);
+    queryModelState.resetModel();
   }
 
   void _startTimer() {
