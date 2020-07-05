@@ -72,8 +72,7 @@ class _AspectListViewState extends State<AspectListView> {
   @override
   Widget build(BuildContext context) {
     return ComBox(
-      title: Text('Aspects',
-          style: TextStyle(color: Color.fromRGBO(82, 82, 82, 1), fontSize: 18)),
+      title: Text('Aspects', style: TextStyle(color: Color.fromRGBO(82, 82, 82, 1), fontSize: 18)),
       backgroundColor: Color.fromRGBO(48, 48, 48, 1),
       child: Column(
         children: [
@@ -85,11 +84,10 @@ class _AspectListViewState extends State<AspectListView> {
                   children: [
                     Expanded(
                         child: ComTextFormField(
-                          controller: _controller,
-                          validator: _validateInput,
-                          label: 'Add aspect',
-                      )
-                    ),
+                      controller: _controller,
+                      validator: _validateInput,
+                      label: 'Add aspect',
+                    )),
                     IconButton(
                       icon: Icon(
                         Icons.add,
@@ -105,8 +103,7 @@ class _AspectListViewState extends State<AspectListView> {
                     )
                   ],
                 ),
-              )
-          ),
+              )),
           Consumer<QueryModel>(
             builder: (context, aspectModel, child) {
               return _buildAspectList();
