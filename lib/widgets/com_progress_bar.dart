@@ -17,9 +17,8 @@ class ComProgressBar extends StatelessWidget {
 
     String get valuePercentString => (value * 100.0).toStringAsFixed(1);
 
-
     ComProgressBar({
-        @required this.title,
+        this.title,
         this.barColor = const Color.fromARGB(0xff, 0x00, 0x00, 0x00),
         this.textColor = const Color.fromARGB(0xff, 0xff, 0xff, 0xff),
         this.backgroundColor = const Color.fromARGB(0xff, 0x18, 0x18, 0x18),
@@ -40,8 +39,8 @@ class ComProgressBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                        title,
-                        SizedBox(height: 8),
+                        if (title != null) title,
+                        if (title != null) SizedBox(height: 8),
                         Stack(
                             alignment: Alignment.center,
                             children: [
@@ -87,8 +86,7 @@ class ComProgressBar extends StatelessWidget {
                                         child: Text("$value %"),
                                     )
                             ],
-                        ),
-                        SizedBox(height: 8),
+                        )
                     ],
                 )
         );

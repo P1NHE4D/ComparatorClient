@@ -12,6 +12,8 @@ class ComTendencyBar extends StatelessWidget {
     final Color textColor;
     final Color backgroundColor;
     final EdgeInsets padding;
+    final double spaceBetweenTitleAndBar;
+    final double spaceBetweenBarAndPercent;
 
     final double leftValue;
     final double rightValue;
@@ -30,11 +32,13 @@ class ComTendencyBar extends StatelessWidget {
     double get rightAbs => max((rightRelative - 0.5) * 2.0, 0.0);
 
     ComTendencyBar({
-        @required this.title,
+        this.title,
         this.barColor = const Color.fromARGB(0xff, 0x00, 0x00, 0x00),
         this.textColor = const Color.fromARGB(0xff, 0xff, 0xff, 0xff),
         this.backgroundColor = const Color.fromARGB(0xff, 0x18, 0x18, 0x18),
         this.padding = const EdgeInsets.all(0.0),
+        this.spaceBetweenTitleAndBar = 4.0,
+        this.spaceBetweenBarAndPercent = 4.0,
         @required this.leftValue,
         @required this.rightValue,
         this.barHeight = 20.0
@@ -48,7 +52,8 @@ class ComTendencyBar extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                        title,
+                        if (title != null) title,
+                        if (title != null) SizedBox(height: spaceBetweenTitleAndBar),
                         Stack(
                             children: [
                                 Row(
@@ -58,7 +63,6 @@ class ComTendencyBar extends StatelessWidget {
                                                 child: Transform.rotate(
                                                     angle: pi,
                                                     child: ComProgressBar(
-                                                        title: SizedBox(height: 0),
                                                         barHeight: barHeight,
                                                         value: leftAbs,
                                                         showText: false,
@@ -75,7 +79,6 @@ class ComTendencyBar extends StatelessWidget {
                                         ),
                                         Expanded(
                                             child: ComProgressBar(
-                                                title: SizedBox(height: 0),
                                                 barHeight: barHeight,
                                                 value: rightAbs,
                                                 showText: false,
@@ -93,7 +96,7 @@ class ComTendencyBar extends StatelessWidget {
                                 ),
                             ],
                         ),
-//                SizedBox(height: 4),
+                        SizedBox(height: spaceBetweenBarAndPercent),
                         Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
