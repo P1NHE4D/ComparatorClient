@@ -41,7 +41,7 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
     final queryModelState = Provider.of<QueryModel>(context, listen: false);
     _objA = queryModelState.objA;
     _objB = queryModelState.objB;
-    queryResult = sendQuery(queryModelState.objA, queryModelState.objB, queryModelState.aspects);
+    queryResult = sendQuery(queryModelState.objA, queryModelState.objB, queryModelState.aspects, queryModelState.quickSearch);
   }
 
   void _startTimer() {

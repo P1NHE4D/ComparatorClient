@@ -3,11 +3,12 @@ import 'dart:io';
 import 'package:comparator/models/query_result.dart';
 import 'package:http/http.dart' as http;
 
-Future<QueryResult> sendQuery(String objA, String objB, List<String> aspects) async {
+Future<QueryResult> sendQuery(String objA, String objB, List<String> aspects, bool quickSearch) async {
   final Map<String, String> queryParameters = {
     'objA': objA,
     'objB': objB,
-    'aspects': aspects.join(' ')
+    'aspects': aspects.join(' '),
+    'quickSearch': quickSearch.toString()
   };
   final uri = Uri.https('www.comparator.p1nhe4d.com', '/api/', queryParameters);
   try {
