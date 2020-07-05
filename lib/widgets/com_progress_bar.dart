@@ -5,28 +5,27 @@ import 'package:flutter/widgets.dart';
 
 class ComProgressBar extends StatelessWidget {
     final Widget title;
-    final Color barColor;
-    final Color textColor;
-    final Color backgroundColor;
+    final Widget overlay;
+    final BorderRadius cornerRadius;
     final EdgeInsets padding;
+    final Color barColor;
+    final Color backgroundColor;
+    final double barHeight;
 
     final double value;
-    final double barHeight;
-    final BorderRadius cornerRadius;
-    final bool showText;
 
     String get valuePercentString => (value * 100.0).toStringAsFixed(1);
 
-    ComProgressBar(
-            {this.title,
-                this.barColor = const Color.fromARGB(0xff, 0x00, 0x00, 0x00),
-                this.textColor = const Color.fromARGB(0xff, 0xff, 0xff, 0xff),
-                this.backgroundColor = const Color.fromARGB(0xff, 0x18, 0x18, 0x18),
-                this.padding = const EdgeInsets.all(0.0),
-                @required this.value,
-                this.barHeight = 20.0,
-                this.cornerRadius = const BorderRadius.all(Radius.circular(10.0)),
-                this.showText = true});
+    ComProgressBar({
+        this.title,
+        this.overlay,
+        this.cornerRadius = const BorderRadius.all(Radius.circular(10.0)),
+        this.padding = const EdgeInsets.all(0.0),
+        this.barColor = const Color.fromARGB(0xff, 0x00, 0x00, 0x00),
+        this.backgroundColor = const Color.fromARGB(0xff, 0x18, 0x18, 0x18),
+        this.barHeight = 20.0,
+        @required this.value,
+    });
 
     @override
     Widget build(BuildContext context) {
@@ -70,8 +69,8 @@ class ComProgressBar extends StatelessWidget {
                                                 ))
                                     ],
                                 ),
-                                if (showText)
-                                    Center(child: Text("$valuePercentString %", style: TextStyle(color: textColor)))
+                                if (overlay != null)
+                                    overlay
                             ],
                         )
                     ],
