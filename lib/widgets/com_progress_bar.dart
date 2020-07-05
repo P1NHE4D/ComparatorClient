@@ -17,19 +17,16 @@ class ComProgressBar extends StatelessWidget {
 
     String get valuePercentString => (value * 100.0).toStringAsFixed(1);
 
-    ComProgressBar({
-        this.title,
-        this.barColor = const Color.fromARGB(0xff, 0x00, 0x00, 0x00),
-        this.textColor = const Color.fromARGB(0xff, 0xff, 0xff, 0xff),
-        this.backgroundColor = const Color.fromARGB(0xff, 0x18, 0x18, 0x18),
-        this.padding = const EdgeInsets.all(0.0),
-        @required this.value,
-        this.barHeight = 20.0,
-        this.cornerRadius = const BorderRadius.all(
-                Radius.circular(10.0)
-        ),
-        this.showText = true
-    });
+    ComProgressBar(
+            {this.title,
+                this.barColor = const Color.fromARGB(0xff, 0x00, 0x00, 0x00),
+                this.textColor = const Color.fromARGB(0xff, 0xff, 0xff, 0xff),
+                this.backgroundColor = const Color.fromARGB(0xff, 0x18, 0x18, 0x18),
+                this.padding = const EdgeInsets.all(0.0),
+                @required this.value,
+                this.barHeight = 20.0,
+                this.cornerRadius = const BorderRadius.all(Radius.circular(10.0)),
+                this.showText = true});
 
     @override
     Widget build(BuildContext context) {
@@ -50,13 +47,10 @@ class ComProgressBar extends StatelessWidget {
                                         Expanded(
                                                 flex: 1,
                                                 child: Container(
-                                                    decoration: BoxDecoration(
-                                                            borderRadius: cornerRadius,
-                                                            color: backgroundColor
-                                                    ),
+                                                    decoration:
+                                                    BoxDecoration(borderRadius: cornerRadius, color: backgroundColor),
                                                     height: barHeight,
-                                                )
-                                        ),
+                                                )),
                                     ],
                                 ),
                                 Row(
@@ -65,26 +59,19 @@ class ComProgressBar extends StatelessWidget {
                                         Expanded(
                                                 flex: (value * 100).round(),
                                                 child: Container(
-                                                    decoration: BoxDecoration(
-                                                            borderRadius: cornerRadius,
-                                                            color: barColor
-                                                    ),
+                                                    decoration: BoxDecoration(borderRadius: cornerRadius, color: barColor),
                                                     height: barHeight,
-                                                )
-                                        ),
+                                                )),
                                         Expanded(
                                                 flex: 100 - (value * 100).round(),
                                                 child: Container(
                                                     color: Colors.transparent,
                                                     height: barHeight,
-                                                )
-                                        )
+                                                ))
                                     ],
                                 ),
                                 if (showText)
-                                    Center(
-                                        child: Text("$value %"),
-                                    )
+                                    Center(child: Text("$valuePercentString %", style: TextStyle(color: textColor)))
                             ],
                         )
                     ],
