@@ -1,44 +1,94 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:percent_indicator/linear_percent_indicator.dart';
+import 'package:flutter/rendering.dart';
+import 'package:flutter/widgets.dart';
 
 class ComProgressBar extends StatelessWidget {
     final Widget title;
     final Color barColor;
     final Color textColor;
+    final Color backgroundColor;
+    final EdgeInsets padding;
 
     final double value;
-    final double height;
+    final double barHeight;
+    final BorderRadius cornerRadius;
+    final bool showText;
 
-    String get percent => (value * 100.0).toStringAsFixed(1);
+    String get valuePercentString => (value * 100.0).toStringAsFixed(1);
 
     ComProgressBar({
-        @required this.title,
+        this.title,
         this.barColor = const Color.fromARGB(0xff, 0x00, 0x00, 0x00),
         this.textColor = const Color.fromARGB(0xff, 0xff, 0xff, 0xff),
+        this.backgroundColor = const Color.fromARGB(0xff, 0x18, 0x18, 0x18),
+        this.padding = const EdgeInsets.all(0.0),
         @required this.value,
-        this.height = 20.0
+        this.barHeight = 20.0,
+        this.cornerRadius = const BorderRadius.all(
+                Radius.circular(10.0)
+        ),
+        this.showText = true
     });
 
     @override
     Widget build(BuildContext context) {
-        return Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-                title,
-                SizedBox(height: 8),
-                LinearPercentIndicator(
-                    animation: true,
-                    lineHeight: height,
-                    animationDuration: 500,
-                    percent: value,
-                    center: new Text("$percent %", style: TextStyle(color: textColor)),
-                    linearStrokeCap: LinearStrokeCap.roundAll,
-                    progressColor: barColor,
-                    backgroundColor: Color.fromARGB(0xff, 0x18, 0x18, 0x18),
+        return Padding(
+                padding: padding,
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                        if (title != null) title,
+                        if (title != null) SizedBox(height: 8),
+                        Stack(
+                            alignment: Alignment.center,
+                            children: [
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                        Expanded(
+                                                flex: 1,
+                                                child: Container(
+                                                    decoration: BoxDecoration(
+                                                            borderRadius: cornerRadius,
+                                                            color: backgroundColor
+                                                    ),
+                                                    height: barHeight,
+                                                )
+                                        ),
+                                    ],
+                                ),
+                                Row(
+                                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                    children: [
+                                        Expanded(
+                                                flex: (value * 100).round(),
+                                                child: Container(
+                                                    decoration: BoxDecoration(
+                                                            borderRadius: cornerRadius,
+                                                            color: barColor
+                                                    ),
+                                                    height: barHeight,
+                                                )
+                                        ),
+                                        Expanded(
+                                                flex: 100 - (value * 100).round(),
+                                                child: Container(
+                                                    color: Colors.transparent,
+                                                    height: barHeight,
+                                                )
+                                        )
+                                    ],
+                                ),
+                                if (showText)
+                                    Center(
+                                        child: Text("$value %"),
+                                    )
+                            ],
+                        )
+                    ],
                 )
-            ],
         );
     }
 }
