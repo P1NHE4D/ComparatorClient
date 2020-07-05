@@ -46,10 +46,13 @@ class ComProgressBar extends StatelessWidget {
                                         Expanded(
                                                 flex: 1,
                                                 child: Container(
-                                                    decoration:
-                                                    BoxDecoration(borderRadius: cornerRadius, color: backgroundColor),
+                                                    decoration: BoxDecoration(
+                                                            borderRadius: cornerRadius,
+                                                            color: backgroundColor
+                                                    ),
                                                     height: barHeight,
-                                                )),
+                                                )
+                                        ),
                                     ],
                                 ),
                                 Row(
@@ -60,13 +63,15 @@ class ComProgressBar extends StatelessWidget {
                                                 child: Container(
                                                     decoration: BoxDecoration(borderRadius: cornerRadius, color: barColor),
                                                     height: barHeight,
-                                                )),
+                                                )
+                                        ),
                                         Expanded(
                                                 flex: 100 - (value * 100).round(),
                                                 child: Container(
                                                     color: Colors.transparent,
                                                     height: barHeight,
-                                                ))
+                                                )
+                                        )
                                     ],
                                 ),
                                 if (overlay != null)
