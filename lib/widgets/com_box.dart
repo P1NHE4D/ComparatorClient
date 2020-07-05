@@ -84,6 +84,7 @@ class _ComBoxState extends State<ComBox> {
                                 child: _buildComBox()
                         )
                     ],
-                ));
+                )
+        );
     }
 }
