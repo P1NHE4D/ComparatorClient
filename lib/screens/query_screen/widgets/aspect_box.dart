@@ -50,7 +50,7 @@ class _AspectBoxState extends State<AspectBox> {
   }
 
   Widget _buildAspectList() {
-    List<String> _aspects = Provider.of<QueryModel>(context).aspects;
+    List<String> _aspects = Provider.of<QueryModel>(context).aspects.keys.toList();
 
     return ListView.separated(
       padding: EdgeInsets.all(0),
