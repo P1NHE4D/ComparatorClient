@@ -92,8 +92,8 @@ class ComTendencyBar extends StatelessWidget {
                         Row(
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
-                                leftSlot,
-                                rightSlot
+                                if(leftSlot != null) leftSlot,
+                                if (rightSlot != null) rightSlot
                             ],
                         )
                     ],
