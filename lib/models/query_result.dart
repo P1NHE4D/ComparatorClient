@@ -40,17 +40,18 @@ class QueryResult {
 
     return QueryResult(
       results: ClassifiedData.fromJson(_map['results']),
-      objAKeywords: (_map['objAKeywords'] as List)?.map((i) => Keyword.fromJson(i))?.toList(),
-      objBKeywords: (_map['objBKeywords'] as List)?.map((i) => Keyword.fromJson(i))?.toList(),
+      objAKeywords: (_map['objAKeywords'] as List)?.map((i) => Keyword?.fromJson(i))?.toList(),
+      objBKeywords: (_map['objBKeywords'] as List)?.map((i) => Keyword?.fromJson(i))?.toList(),
       objAEmotions: EmotionScores.fromJson(_map['objAEmotions']),
       objBEmotions: EmotionScores.fromJson(_map['objBEmotions']),
       objASentimentScore: _map['objASentimentScore'],
       objBSentimentScore: _map['objBSentimentScore'],
-      aspectResults: (_map['aspectResults'] as Map)?.map((key, value) => MapEntry(key, ClassifiedData.fromJson(value))),
-      objAAspectEmotions: (_map['objAAspectEmotions'] as Map)?.map((key, value) => MapEntry(key, EmotionScores.fromJson(value))),
-      objBAspectEmotions: (_map['objBAspectEmotions'] as Map)?.map((key, value) => MapEntry(key, EmotionScores.fromJson(value))),
+      aspectResults: (_map['aspectResults'] as Map)?.map((key, value) => MapEntry(key, ClassifiedData?.fromJson(value))),
+      objAAspectEmotions: (_map['objAAspectEmotions'] as Map)?.map((key, value) => MapEntry(key, EmotionScores?.fromJson(value))),
+      objBAspectEmotions: (_map['objBAspectEmotions'] as Map)?.map((key, value) => MapEntry(key, EmotionScores?.fromJson(value))),
       objAAspectSentimentScores: _map['objAAspectSentimentScores'],
-      objBAspectSentimentScores: _map['objBAspectSentimentScores']
+      objBAspectSentimentScores: _map['objBAspectSentimentScores'],
+      message: _map['message']
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'package:comparator/models/query_model.dart';
 import 'package:comparator/models/query_result.dart';
+import 'package:comparator/screens/query_result_screen/widgets/aspect_results_box.dart';
 import 'package:comparator/screens/query_result_screen/widgets/object_box.dart';
 import 'package:comparator/screens/query_result_screen/widgets/results_box.dart';
 import 'package:comparator/services/comparator_api.dart';
@@ -42,7 +43,6 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
     _objA = queryModelState.objA;
     _objB = queryModelState.objB;
     queryResult = sendQuery(queryModelState.objA, queryModelState.objB, queryModelState.aspects, queryModelState.quickSearch);
-    queryModelState.resetModel();
   }
 
   void _startTimer() {
@@ -80,68 +80,78 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-        backgroundColor: Color.fromRGBO(0, 0, 0, 1),
-        appBar: AppBar(
+    return WillPopScope(
+      onWillPop: () async {
+        final state = Provider.of<QueryModel>(context, listen: false);
+        state.resetModel();
+        return true;
+      },
+      child: Scaffold(
           backgroundColor: Color.fromRGBO(0, 0, 0, 1),
-          elevation: 0.0,
-        ),
-        body: FutureBuilder<QueryResult>(
-          future: queryResult,
-          builder: (context, snapshot) {
-            if (snapshot.hasData) {
-              _timer.cancel();
-              return SingleChildScrollView(
+          appBar: AppBar(
+            backgroundColor: Color.fromRGBO(0, 0, 0, 1),
+            elevation: 0.0,
+          ),
+          body: FutureBuilder<QueryResult>(
+            future: queryResult,
+            builder: (context, snapshot) {
+              if (snapshot.hasData) {
+                _timer.cancel();
+                return SingleChildScrollView(
+                  child: Column(
+                      children: [
+                        ResultBox(
+                          dataCount: snapshot.data.results.dataCount,
+                          objATendency: snapshot.data.results.objATendency,
+                          objBTendency: snapshot.data.results.objBTendency,
+                          elapsedTime: DateTime.fromMillisecondsSinceEpoch(_elapsedSeconds * 1000),
+                        ),
+                        ObjectBox(
+                          objName: _objA,
+                          tendency: snapshot.data.results.objATendency,
+                          sentimentScore: snapshot.data.objASentimentScore,
+                          emotionScores: snapshot.data.objAEmotions,
+                          sentences: snapshot.data.results.objAData,
+                        ),
+                        ObjectBox(
+                          objName: _objB,
+                          tendency: snapshot.data.results.objBTendency,
+                          sentimentScore: snapshot.data.objBSentimentScore,
+                          emotionScores: snapshot.data.objBEmotions,
+                          sentences: snapshot.data.results.objBData,
+                        ),
+                        if(snapshot.data.aspectResults != null)
+                          AspectResultsBox(
+                            aspectResults: snapshot.data.aspectResults,
+                          )
+                      ]
+                  ),
+                );
+              } else if (snapshot.hasError) {
+                return _buildErrorWidget(snapshot.error.toString());
+              }
+              return Container(
+                width: double.infinity,
                 child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      ResultBox(
-                        dataCount: snapshot.data.results.dataCount,
-                        objATendency: snapshot.data.results.objATendency,
-                        objBTendency: snapshot.data.results.objBTendency,
-                        elapsedTime: DateTime.fromMillisecondsSinceEpoch(_elapsedSeconds * 1000),
+                      CircularProgressIndicator(
+                        valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
                       ),
-                      ObjectBox(
-                        objName: _objA,
-                        tendency: snapshot.data.results.objATendency,
-                        sentimentScore: snapshot.data.objASentimentScore,
-                        emotionScores: snapshot.data.objAEmotions,
-                        sentences: snapshot.data.results.objAData,
-                      ),
-                      ObjectBox(
-                        objName: _objB,
-                        tendency: snapshot.data.results.objBTendency,
-                        sentimentScore: snapshot.data.objBSentimentScore,
-                        emotionScores: snapshot.data.objBEmotions,
-                        sentences: snapshot.data.results.objBData,
-                      ),
-                      //TODO: add AspectResultsComBox widget
+                      SizedBox(height: 10),
+                      SizedBox(
+                        child: Text(
+                            '${_minutes < 10 ? '0$_minutes' : _minutes}:${_secs < 10 ? '0$_secs' : _secs}',
+                            style: TextStyle(color: Colors.white, fontSize: 16)
+                        ),
+                      )
                     ]
                 ),
               );
-            } else if (snapshot.hasError) {
-              return _buildErrorWidget(snapshot.error.toString());
-            }
-            return Container(
-              width: double.infinity,
-              child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircularProgressIndicator(
-                      valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-                    ),
-                    SizedBox(height: 10),
-                    SizedBox(
-                      child: Text(
-                          '${_minutes < 10 ? '0$_minutes' : _minutes}:${_secs < 10 ? '0$_secs' : _secs}',
-                          style: TextStyle(color: Colors.white, fontSize: 16)
-                      ),
-                    )
-                  ]
-              ),
-            );
-          },
-        )
+            },
+          )
+      ),
     );
   }
 }
