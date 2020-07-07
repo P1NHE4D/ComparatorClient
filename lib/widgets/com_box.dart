@@ -15,7 +15,7 @@ class ComBox extends StatefulWidget {
     ComBox({
         this.title,
         this.child,
-        this.backgroundColor,
+        this.backgroundColor = const Color.fromRGBO(48, 48, 48, 1),
         this.focusColor,
         this.onTap,
         this.icon,
