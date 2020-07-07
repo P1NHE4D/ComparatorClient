@@ -1,7 +1,7 @@
 class ClassifiedData {
-  final num dataCount;
-  final num objATendency;
-  final num objBTendency;
+  final int dataCount;
+  final double objATendency;
+  final double objBTendency;
   final List<String> objAData;
   final List<String> objBData;
 
@@ -15,9 +15,9 @@ class ClassifiedData {
 
   factory ClassifiedData.fromJson(Map<String, dynamic> json) {
     return ClassifiedData(
-      dataCount: json['dataCount'].toInt(),
-      objATendency: json['objATendency'],
-      objBTendency: json['objBTendency'],
+      dataCount: json['dataCount']?.toInt(),
+      objATendency: json['objATendency']?.toDouble(),
+      objBTendency: json['objBTendency']?.toDouble(),
       objAData: (json['objAData'] as List).map((e) => e.toString()).toList(),
       objBData: (json['objBData'] as List).map((e) => e.toString()).toList()
     );
