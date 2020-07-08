@@ -8,7 +8,7 @@ import 'package:provider/provider.dart';
 class AspectFilterScreen extends StatelessWidget {
 
     Widget _buildList(QueryModel model) {
-        var hugo = Column(
+        return Column(
                 children: model.aspects.entries.map((entry) =>
                         ListTile(
                             title: Text(
@@ -19,7 +19,6 @@ class AspectFilterScreen extends StatelessWidget {
                             ),
                         )
                 ).toList());
-        return hugo;
     }
 
     @override
