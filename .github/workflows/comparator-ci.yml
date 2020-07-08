@@ -51,5 +51,6 @@ jobs:
           channel: 'stable'
       - name: install dependencies
         run: flutter pub get
+      - uses: malinskiy/action-android/install-sdk@release/0.0.7
       - name: build android
         run: flutter build apk --release
