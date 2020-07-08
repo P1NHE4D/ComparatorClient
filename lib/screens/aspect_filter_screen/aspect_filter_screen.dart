@@ -16,6 +16,7 @@ class AspectFilterScreen extends StatelessWidget {
                             trailing: Switch(
                                 value: entry.value,
                                 onChanged: (val) => model.setAspectFilter(entry.key, val),
+                                activeColor: Colors.green,
                             ),
                         )
                 ).toList());
@@ -29,28 +30,31 @@ class AspectFilterScreen extends StatelessWidget {
                 backgroundColor: Colors.black,
                 title: Text("Filter", style: TextStyle(color: Colors.white),),
             ),
-            body: Column(
-                children: [
-                    ComBox(
-                        child: ListTile(
-                                title: Text(
-                                    "Enable filtering?", style: TextStyle(color: Colors.white),),
-                                trailing: Consumer<QueryModel>(
-                                    builder: (context, model, child) =>
-                                            Switch(
-                                                value: model.enableFiltering,
-                                                onChanged: (val) => model.enableFiltering = val,
-                                            ),
-                                )
-                        ),
-                    ),
-                    SingleChildScrollView(
-                        child: ComBox(
-                            child: Consumer<QueryModel>(
-                                    builder: (context, model, child) => _buildList(model)),
-                        ),
+            body: SingleChildScrollView(
+                    child: Column(
+                        children: [
+                            ComBox(
+                                child: ListTile(
+                                        title: Text(
+                                            "Enable filtering?",
+                                            style: TextStyle(color: Colors.white),),
+                                        trailing: Consumer<QueryModel>(
+                                            builder: (context, model, child) =>
+                                                    Switch(
+                                                        value: model.enableFiltering,
+                                                        onChanged: (val) =>
+                                                        model.enableFiltering = val,
+                                                        activeColor: Colors.green,
+                                                    ),
+                                        )
+                                ),
+                            ),
+                            ComBox(
+                                child: Consumer<QueryModel>(
+                                        builder: (context, model, child) => _buildList(model)),
+                            ),
+                        ],
                     )
-                ],
             ),
         );
     }
