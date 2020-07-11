@@ -22,9 +22,9 @@ class AspectResultsBox extends StatelessWidget {
       ),
       child: Column(
         children: aspectResults.entries.map((e) => ComTendencyBar(
-          barColor: Colors.yellowAccent,
+          barColor: Colors.lightBlue,
           textColor: Colors.white,
-          padding: EdgeInsets.only(top: 5),
+          padding: EdgeInsets.symmetric(vertical: 8, horizontal: 6),
           title: Text(e.key, style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
           value: e.value.objATendency > e.value.objBTendency ? -e.value.objATendency + e.value.objBTendency : e.value.objBTendency - e.value.objATendency,
           subTitle: Row(

@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:comparator/models/emotion_scores.dart';
 import 'package:comparator/screens/sentence_list_screen/sentence_list_screen.dart';
 import 'package:comparator/widgets/com_box.dart';
@@ -22,35 +24,42 @@ class ObjectBox extends StatelessWidget {
   });
 
   List<Widget> _buildProgressBars(double tendency, double sentimentScore, EmotionScores scores) {
-    Widget buildProgressBar(String title, Color color, double value) {
+
+    Widget buildProgressBar(String title, Color color, double value, bool isDense) {
       return ComProgressBar(
-        padding: EdgeInsets.only(top: 5),
+        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
         title: Text(title, style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        overlay: Text((value * 100).toStringAsFixed(1) + '%', style: TextStyle(color: Colors.white),),
+        overlay: isDense ? null : Text((value ?? 0.0 * 100.0).toStringAsFixed(1) + '%', style: TextStyle(color: Colors.white),),
         barColor: color,
-        value: value,
+        value: value ?? 0.0,
+        barHeight: isDense ? 10.0 : 20.0,
+        cornerRadius: BorderRadius.all(Radius.circular(4.0)),
       );
     }
 
+    final sentimentScoreNonNull = sentimentScore ?? 0.0;
+    final r = 0xff - max(0, (sentimentScoreNonNull * 0xff).toInt());
+    final g = 0xff - min(0, (sentimentScoreNonNull * 0xff).toInt());
+
     return [
-      buildProgressBar('Popularity', tendency < 0.5 ? Colors.red : tendency == 0.5 ? Colors.blueAccent : Colors.green, tendency),
+      buildProgressBar('Popularity', tendency < 0.5 ? Colors.red : tendency == 0.5 ? Colors.blueAccent : Colors.green, tendency, false),
       ComTendencyBar(
         title: Text('Sentiment Score', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),),
-        value: sentimentScore,
-        barColor: Colors.yellowAccent,
-        padding: EdgeInsets.only(top: 5),
+        value: sentimentScoreNonNull,
+              barColor: Color.fromARGB(0xff, r, g, 0x0),
+        padding: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
         subTitle: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            Text((sentimentScore * 100).toStringAsFixed(1) + '%', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),),
+            Text((sentimentScoreNonNull * 100).toStringAsFixed(1) + '%', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),),
           ],
         )
       ),
-      buildProgressBar('Anger', Colors.indigo, scores.anger),
-      buildProgressBar('Disgust', Colors.indigo, scores.disgust),
-      buildProgressBar('Fear', Colors.indigo, scores.fear),
-      buildProgressBar('Joy', Colors.indigo, scores.joy),
-      buildProgressBar('Sadness', Colors.indigo, scores.sadness)
+      buildProgressBar('Anger', Color.fromARGB(0xff, 0x80, 0x0, 0x0), scores.anger, true),
+      buildProgressBar('Disgust', Color.fromARGB(0xff, 0x60, 0x40, 0x0), scores.disgust, true),
+      buildProgressBar('Fear', Color.fromARGB(0xff, 0x20, 0x0, 0xd0), scores.fear, true),
+      buildProgressBar('Joy', Color.fromARGB(0xff, 0x05, 0x80, 0x0), scores.joy, true),
+      buildProgressBar('Sadness', Color.fromARGB(0xff, 0x80, 0x0, 0xAE), scores.sadness, true)
     ];
   }
 

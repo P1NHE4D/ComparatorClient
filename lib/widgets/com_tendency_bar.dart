@@ -19,9 +19,9 @@ class ComTendencyBar extends StatelessWidget {
 
     final double value;
 
-    double get leftAbs => max(-value, 0.0);
+    double get leftAbs => max(-(value ?? 0.0), 0.0);
 
-    double get rightAbs => max(value, 0.0);
+    double get rightAbs => max((value ?? 0.0), 0.0);
 
     ComTendencyBar({
         this.title,
@@ -60,8 +60,8 @@ class ComTendencyBar extends StatelessWidget {
                                             cornerRadius: BorderRadius.only(
                                                 topLeft: Radius.circular(0),
                                                 bottomLeft: Radius.circular(0),
-                                                topRight: Radius.circular(10),
-                                                bottomRight: Radius.circular(10)
+                                                topRight: Radius.circular(4),
+                                                bottomRight: Radius.circular(4)
                                             ),
                                         ),
                                     )
@@ -75,8 +75,8 @@ class ComTendencyBar extends StatelessWidget {
                                         cornerRadius: BorderRadius.only(
                                             topLeft: Radius.circular(0),
                                             bottomLeft: Radius.circular(0),
-                                            topRight: Radius.circular(10),
-                                            bottomRight: Radius.circular(10)
+                                            topRight: Radius.circular(4),
+                                            bottomRight: Radius.circular(4)
                                         ),
                                     ),
                                 )

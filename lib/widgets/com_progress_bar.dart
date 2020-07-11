@@ -19,7 +19,7 @@ class ComProgressBar extends StatelessWidget {
     ComProgressBar({
         this.title,
         this.overlay,
-        this.cornerRadius = const BorderRadius.all(Radius.circular(10.0)),
+        this.cornerRadius = const BorderRadius.all(Radius.circular(4.0)),
         this.padding = const EdgeInsets.all(0.0),
         this.barColor = const Color.fromARGB(0xff, 0x00, 0x00, 0x00),
         this.backgroundColor = const Color.fromARGB(0xff, 0x18, 0x18, 0x18),

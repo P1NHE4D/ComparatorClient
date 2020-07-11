@@ -18,12 +18,15 @@ class ResultBox extends StatelessWidget {
   });
 
   Widget _buildTextRow(String title, String content, Color color) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(title, style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-        Text(content, style: TextStyle(color: color, fontSize: 14))
-      ],
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(title, style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
+          Text(content, style: TextStyle(color: color, fontSize: 14))
+        ],
+      ),
     );
   }
 
