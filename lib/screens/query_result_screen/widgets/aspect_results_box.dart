@@ -22,7 +22,10 @@ class AspectResultsBox extends StatelessWidget {
       ),
       child: Column(
         children: aspectResults.entries.map((e) {
-          double val = e.value.objATendency > e.value.objBTendency ? -e.value.objATendency + e.value.objBTendency : e.value.objBTendency - e.value.objATendency;
+          double val = 0.0;
+          if (e.value.objATendency != null && e.value.objBTendency != null) {
+            val = e.value.objATendency > e.value.objBTendency ? -e.value.objATendency + e.value.objBTendency : e.value.objBTendency - e.value.objATendency;
+          }
           return ComTendencyBar(
               barColor: Colors.lightBlue,
               textColor: Colors.white,
@@ -32,8 +35,8 @@ class AspectResultsBox extends StatelessWidget {
               subTitle: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text((e.value.objATendency * 100).toStringAsFixed(1) + '%', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-                    Text((e.value.objBTendency * 100).toStringAsFixed(1) + '%', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
+                    Text((e.value.objATendency ?? 0 * 100).toStringAsFixed(1) + '%', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
+                    Text((e.value.objBTendency ?? 0 * 100).toStringAsFixed(1) + '%', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
                   ],
                 ),
               );
