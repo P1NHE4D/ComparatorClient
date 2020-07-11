@@ -1,5 +1,4 @@
 import 'package:comparator/models/classified_data.dart';
-import 'package:comparator/util/color_functions.dart';
 import 'package:comparator/widgets/com_box.dart';
 import 'package:comparator/widgets/com_tendency_bar.dart';
 import 'package:flutter/cupertino.dart';
@@ -25,7 +24,7 @@ class AspectResultsBox extends StatelessWidget {
         children: aspectResults.entries.map((e) {
           double val = e.value.objATendency > e.value.objBTendency ? -e.value.objATendency + e.value.objBTendency : e.value.objBTendency - e.value.objATendency;
           return ComTendencyBar(
-              barColor: determineBarColor(val, -1.0, 1.0),
+              barColor: Colors.lightBlue,
               textColor: Colors.white,
               padding: EdgeInsets.symmetric(vertical: 8, horizontal: 6),
               title: Text(e.key, style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
