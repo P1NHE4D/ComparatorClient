@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:comparator/models/emotion_scores.dart';
 import 'package:comparator/screens/sentence_list_screen/sentence_list_screen.dart';
+import 'package:comparator/util/color_functions.dart';
 import 'package:comparator/widgets/com_box.dart';
 import 'package:comparator/widgets/com_progress_bar.dart';
 import 'package:comparator/widgets/com_tendency_bar.dart';
@@ -37,21 +38,19 @@ class ObjectBox extends StatelessWidget {
       );
     }
 
-    final sentimentScoreNonNull = sentimentScore ?? 0.0;
-    final r = 0xff - max(0, (sentimentScoreNonNull * 0xff).toInt());
-    final g = 0xff - min(0, (sentimentScoreNonNull * 0xff).toInt());
-
     return [
-      buildProgressBar('Popularity', tendency < 0.5 ? Colors.red : tendency == 0.5 ? Colors.blueAccent : Colors.green, tendency, false),
+      buildProgressBar('Popularity', determineBarColor(tendency, 0.0, 1.0), tendency ?? 0.0, false),
       ComTendencyBar(
         title: Text('Sentiment Score', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),),
-        value: sentimentScoreNonNull,
-              barColor: Color.fromARGB(0xff, r, g, 0x0),
+        value: sentimentScore ?? 0.0,
+        barColor: determineBarColor(sentimentScore, -1.0, 1.0),
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
         subTitle: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text((sentimentScoreNonNull * 100).toStringAsFixed(1) + '%', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),),
+            Text('Negative', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),),
+            Text('Neutral', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),),
+            Text('Positive', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),),
           ],
         )
       ),
