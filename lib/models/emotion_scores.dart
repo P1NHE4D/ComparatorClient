@@ -17,11 +17,11 @@ class EmotionScores {
                     sadness: 0.0
             );
         return EmotionScores(
-                anger: json['anger']?.toDouble(),
-                disgust: json['disgust']?.toDouble(),
-                fear: json['fear']?.toDouble(),
-                joy: json['joy']?.toDouble(),
-                sadness: json['sadness']?.toDouble()
+                anger: json['anger']?.toDouble() ?? 0.0,
+                disgust: json['disgust']?.toDouble() ?? 0.0,
+                fear: json['fear']?.toDouble() ?? 0.0,
+                joy: json['joy']?.toDouble() ?? 0.0,
+                sadness: json['sadness']?.toDouble() ?? 0.0
         );
     }
 }
