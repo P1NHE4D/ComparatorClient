@@ -36,7 +36,7 @@ class AspectFilterScreen extends StatelessWidget {
                             ComBox(
                                 child: ListTile(
                                         title: Text(
-                                            "Enable filtering?",
+                                            "Enable filter?",
                                             style: TextStyle(color: Colors.white),),
                                         trailing: Consumer<QueryModel>(
                                             builder: (context, model, child) =>

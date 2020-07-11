@@ -59,8 +59,6 @@ class SearchBox extends StatelessWidget {
                                 if (_formKey.currentState.validate()) {
                                     Provider.of<QueryModel>(context, listen: false).setObjects(
                                             _objAcontroller.text, _objBcontroller.text);
-                                    _objAcontroller.clear();
-                                    _objBcontroller.clear();
                                     Navigator.pushNamed(context, '/results');
                                 }
                             },
