@@ -133,6 +133,8 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
                     if (snapshot.data.aspectResults != null)
                       AspectResultsBox(
                         aspectResults: snapshot.data.aspectResults,
+                        objA: _objA,
+                        objB: _objB,
                       )
                   ],
                 ),

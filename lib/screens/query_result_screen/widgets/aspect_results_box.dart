@@ -6,8 +6,14 @@ import 'package:flutter/material.dart';
 
 class AspectResultsBox extends StatelessWidget {
   final Map<String, ClassifiedData> aspectResults;
+  final String objA;
+  final String objB;
 
-  AspectResultsBox({@required this.aspectResults});
+  AspectResultsBox({
+    @required this.aspectResults,
+    @required this.objA,
+    @required this.objB,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -15,10 +21,36 @@ class AspectResultsBox extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.3,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                Text(
+                  objA,
+                  style: TextStyle(
+                      color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18),
+                ),
+              ],
+            )
+          ),
           Text(
-            'Aspects',
+            'vs',
             style: TextStyle(
                 color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18),
+          ),
+          SizedBox(
+            width: MediaQuery.of(context).size.width * 0.3,
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: [
+                Text(
+                  objB,
+                  style: TextStyle(
+                      color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18),
+                ),
+              ],
+            )
           ),
         ],
       ),
