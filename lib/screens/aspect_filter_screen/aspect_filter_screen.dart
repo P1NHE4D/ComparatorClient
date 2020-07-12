@@ -23,43 +23,46 @@ class AspectFilterScreen extends StatelessWidget {
     );
   }
 
-    @override
-    Widget build(BuildContext context) {
-        //final model = Provider.of<QueryModel>(context, listen: false);
-        return Scaffold(
-            backgroundColor: Color.fromARGB(0xff, 0x0, 0x0, 0x0),
-            appBar: AppBar(
-                backgroundColor: Colors.black,
-                title: Text("Filter", style: TextStyle(color: Colors.white),),
+  @override
+  Widget build(BuildContext context) {
+    final model = Provider.of<QueryModel>(context, listen: false);
+    return Scaffold(
+      backgroundColor: Color.fromARGB(0xff, 0x0, 0x0, 0x0),
+      appBar: AppBar(
+        backgroundColor: Colors.black,
+        title: Text(
+          "Filter",
+          style: TextStyle(color: Colors.white),
+        ),
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            ComBox(
+              child: ListTile(
+                title: Text(
+                  "Enable filter?",
+                  style: TextStyle(color: Colors.white),
+                ),
+                trailing: Consumer<QueryModel>(
+                  builder: (context, model, child) => Switch(
+                    value: model.enableFiltering,
+                    onChanged: model.aspects.isEmpty
+                        ? null
+                        : (val) => model.enableFiltering = val,
+                    activeColor: Colors.green,
+                  ),
+                ),
+              ),
             ),
-            body: SingleChildScrollView(
-                    child: Consumer<QueryModel>(
-                            builder: (context, model, child) =>
-                                    Column(
-                                        children: [
-                                            ComBox(
-                                                    child: ListTile(
-                                                        title: Text(
-                                                            "Enable filter?",
-                                                            style: TextStyle(color: Colors.white),),
-                                                        trailing:
-                                                        Switch(
-                                                            value: model.enableFiltering,
-                                                            onChanged: model.aspects.isEmpty
-                                                                    ? null
-                                                                    : (val) =>
-                                                            model.enableFiltering = val,
-                                                            activeColor: Colors.green,
-                                                        ),
-                                                    )
-                                            ),
-                                            if (model.aspects.isNotEmpty && model.enableFiltering) ComBox(
-                                                    child: _buildList(model)
-                                            )
-                                        ],
-                                    )
-                    )
-            ),
-        );
-    }
+            if (model.aspects.isNotEmpty) ComBox(
+                child: Consumer<QueryModel>(
+                  builder: (context, model, child) => _buildList(model),
+                )
+            )
+          ],
+        ),
+      ),
+    );
+  }
 }
