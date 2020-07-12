@@ -55,7 +55,11 @@ class AspectFilterScreen extends StatelessWidget {
                 ),
               ),
             ),
-            if (model.aspects.isNotEmpty) ComBox(child: _buildList(model))
+            if (model.aspects.isNotEmpty) ComBox(
+                child: Consumer<QueryModel>(
+                  builder: (context, model, child) => _buildList(model),
+                )
+            )
           ],
         ),
       ),
