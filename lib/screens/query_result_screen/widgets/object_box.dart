@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:comparator/models/emotion_scores.dart';
 import 'package:comparator/screens/sentence_list_screen/sentence_list_screen.dart';
 import 'package:comparator/util/color_functions.dart';
