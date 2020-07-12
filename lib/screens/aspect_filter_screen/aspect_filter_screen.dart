@@ -24,6 +24,7 @@ class AspectFilterScreen extends StatelessWidget {
 
     @override
     Widget build(BuildContext context) {
+        final model = Provider.of<QueryModel>(context, listen: false);
         return Scaffold(
             backgroundColor: Color.fromARGB(0xff, 0x0, 0x0, 0x0),
             appBar: AppBar(
@@ -42,17 +43,15 @@ class AspectFilterScreen extends StatelessWidget {
                                             builder: (context, model, child) =>
                                                     Switch(
                                                         value: model.enableFiltering,
-                                                        onChanged: (val) =>
-                                                        model.enableFiltering = val,
+                                                        onChanged: model.aspects.isEmpty ? null : (val) => model.enableFiltering = val,
                                                         activeColor: Colors.green,
                                                     ),
                                         )
                                 ),
                             ),
-                            ComBox(
-                                child: Consumer<QueryModel>(
-                                        builder: (context, model, child) => _buildList(model)),
-                            ),
+                            if (model.aspects.isNotEmpty) ComBox(
+                                child: _buildList(model)
+                            )
                         ],
                     )
             ),

@@ -82,8 +82,8 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
   Widget build(BuildContext context) {
     return WillPopScope(
       onWillPop: () async {
-        //final state = Provider.of<QueryModel>(context, listen: false);
-        //state.resetModel();
+        final state = Provider.of<QueryModel>(context, listen: false);
+        state.resetModel();
         return true;
       },
       child: Scaffold(
