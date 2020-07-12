@@ -1,24 +1,24 @@
-name: Comparator Client CI
-
-on: [push]
-
-jobs:
-  
-  test:
-    runs-on: self-hosted
-    steps:
-      - name: checkout
-        uses: actions/checkout@v1
-      - name: setup flutter
-        uses: subosito/flutter-action@v1
-        with:
-          channel: 'stable'
-      - name: install dependencies
-        run: flutter pub get
-      - name: perform static code analysis
-        run: flutter analyze .
-      - name: test
-        run: flutter test
+#name: Comparator Client CI
+#
+#on: [push]
+#
+#jobs:
+#
+#  test:
+#    runs-on: self-hosted
+#    steps:
+#      - name: checkout
+#        uses: actions/checkout@v1
+#      - name: setup flutter
+#        uses: subosito/flutter-action@v1
+#        with:
+#          channel: 'stable'
+#      - name: install dependencies
+#        run: flutter pub get
+#      - name: perform static code analysis
+#        run: flutter analyze .
+#      - name: test
+#        run: flutter test
     
   #build-ios:
   #  runs-on: macos-latest
@@ -35,21 +35,22 @@ jobs:
   #      run: flutter build ios --release --no-codesign
         
      
-  build-android:
-    runs-on: self-hosted
-    
-    steps:
-      - name: checkout
-        uses: actions/checkout@v1
-      - name: setup java
-        uses: actions/setup-java@v1
-        with:
-          java-version: '12.x'
-      - name: setup flutter
-        uses: subosito/flutter-action@v1
-        with:
-          channel: 'stable'
-      - name: install dependencies
-        run: flutter pub get
-      - name: build android
-        run: flutter build apk --release
+#  build-android:
+#    runs-on: self-hosted
+#
+#    steps:
+#      - name: checkout
+#        uses: actions/checkout@v1
+#      - name: setup java
+#        uses: actions/setup-java@v1
+#        with:
+#          java-version: '12.x'
+#      - name: setup flutter
+#        uses: subosito/flutter-action@v1
+#        with:
+#          channel: 'stable'
+#      - name: install dependencies
+#        run: flutter pub get
+#      - name: build android
+#        run: flutter build apk --release
+#
