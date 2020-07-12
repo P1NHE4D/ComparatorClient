@@ -3,7 +3,7 @@ name: Comparator Client CI
 on: [push]
 
 jobs:
-  
+
   test:
     runs-on: self-hosted
     steps:
@@ -19,25 +19,25 @@ jobs:
         run: flutter analyze .
       - name: test
         run: flutter test
-    
-  #build-ios:
-  #  runs-on: macos-latest
-  #  steps:
-  #    - name: checkout
-  #      uses: actions/checkout@v1
-  #    - name: setup flutter
-  #      uses: subosito/flutter-action@v1
-  #      with:
-  #        channel: 'stable'
-  #    - name: install dependencies
-  #      run: flutter pub get
-  #    - name: build ios
-  #      run: flutter build ios --release --no-codesign
-        
-     
+
+ #build-ios:
+ #  runs-on: macos-latest
+ #  steps:
+ #    - name: checkout
+ #      uses: actions/checkout@v1
+ #    - name: setup flutter
+ #      uses: subosito/flutter-action@v1
+ #      with:
+ #        channel: 'stable'
+ #    - name: install dependencies
+ #      run: flutter pub get
+ #    - name: build ios
+ #      run: flutter build ios --release --no-codesign
+
+
   build-android:
     runs-on: self-hosted
-    
+
     steps:
       - name: checkout
         uses: actions/checkout@v1

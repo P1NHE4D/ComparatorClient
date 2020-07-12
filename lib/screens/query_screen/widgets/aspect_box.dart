@@ -50,7 +50,8 @@ class _AspectBoxState extends State<AspectBox> {
   }
 
   Widget _buildAspectList() {
-    List<String> _aspects = Provider.of<QueryModel>(context).aspects.keys.toList();
+    List<String> _aspects =
+        Provider.of<QueryModel>(context).aspects.keys.toList();
 
     return ListView.separated(
       padding: EdgeInsets.all(0),
@@ -78,34 +79,34 @@ class _AspectBoxState extends State<AspectBox> {
       child: Column(
         children: [
           Form(
-              key: _formKey,
-              child: Container(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Expanded(
-                        child: ComTextFormField(
-                          controller: _controller,
-                          validator: _validateInput,
-                          label: 'Add aspect',
-                      )
+            key: _formKey,
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Expanded(
+                    child: ComTextFormField(
+                      controller: _controller,
+                      validator: _validateInput,
+                      label: 'Add aspect',
                     ),
-                    IconButton(
-                      icon: Icon(
-                        Icons.add,
-                        color: Colors.white,
-                      ),
-                      onPressed: () {
-                        if (_formKey.currentState.validate()) {
-                          Provider.of<QueryModel>(context, listen: false)
-                              .addAspect(_controller.text);
-                          _controller.clear();
-                        }
-                      },
-                    )
-                  ],
-                ),
-              )
+                  ),
+                  IconButton(
+                    icon: Icon(
+                      Icons.add,
+                      color: Colors.white,
+                    ),
+                    onPressed: () {
+                      if (_formKey.currentState.validate()) {
+                        Provider.of<QueryModel>(context, listen: false)
+                            .addAspect(_controller.text);
+                        _controller.clear();
+                      }
+                    },
+                  )
+                ],
+              ),
+            ),
           ),
           Consumer<QueryModel>(
             builder: (context, aspectModel, child) {

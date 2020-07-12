@@ -7,9 +7,8 @@ class Keyword {
 
   factory Keyword.fromJson(Map<String, dynamic> json) {
     return Keyword(
-      text: json['text'],
-      relevance: json['relevance']?.toDouble(),
-      sentiment: json['sentiment']?.toDouble()
-    );
+        text: json['text'],
+        relevance: json['relevance']?.toDouble() ?? 0.0,
+        sentiment: json['sentiment']?.toDouble() ?? 0.0);
   }
 }

@@ -5,8 +5,7 @@ import 'routes.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
-      create: (context) => QueryModel(), child: ComparatorApp())
-  );
+      create: (context) => QueryModel(), child: ComparatorApp()));
 }
 
 class ComparatorApp extends StatelessWidget {
