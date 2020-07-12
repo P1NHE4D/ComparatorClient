@@ -5,6 +5,7 @@ class QueryModel extends ChangeNotifier {
   String _objA = '';
   String _objB = '';
   bool _quickSearch = true;
+  bool _resetOnSubmit = true;
   bool _enableFiltering = false;
   final Map<String, bool> _aspects = {};
 
@@ -17,6 +18,14 @@ class QueryModel extends ChangeNotifier {
   set quickSearch(bool val) {
     assert(val != null);
     _quickSearch = val;
+    notifyListeners();
+  }
+
+  bool get autoReset => _resetOnSubmit;
+
+  set autoReset(bool val) {
+    assert(val != null);
+    _resetOnSubmit = val;
     notifyListeners();
   }
 

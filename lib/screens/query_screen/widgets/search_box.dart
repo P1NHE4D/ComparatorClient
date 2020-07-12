@@ -8,7 +8,7 @@ class SearchBox extends StatelessWidget {
   final TextEditingController _objAcontroller = TextEditingController();
   final TextEditingController _objBcontroller = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final RegExp _regExp = new RegExp(r"^\w+$");
+  final RegExp _regExp = RegExp(r"^\w+$");
 
   String _validateInput(String value) {
     if (value.isEmpty) {
@@ -59,9 +59,14 @@ class SearchBox extends StatelessWidget {
               ),
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  Provider.of<QueryModel>(context, listen: false)
-                      .setObjects(_objAcontroller.text, _objBcontroller.text);
-                  Navigator.pushNamed(context, '/results');
+                  final model = Provider.of<QueryModel>(context, listen: false);
+                  model.setObjects(_objAcontroller.text, _objBcontroller.text);
+                  Navigator.pushNamed(context, '/results').then((val) {
+                    if(model.autoReset) {
+                      _objAcontroller.clear();
+                      _objBcontroller.clear();
+                    }
+                  });
                 }
               },
             )
