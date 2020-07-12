@@ -90,7 +90,9 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
     return WillPopScope(
       onWillPop: () async {
         final state = Provider.of<QueryModel>(context, listen: false);
-        state.resetModel();
+        if (state.autoReset) {
+          state.resetModel();
+        }
         return true;
       },
       child: Scaffold(
