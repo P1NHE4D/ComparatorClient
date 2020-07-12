@@ -20,9 +20,9 @@ class QueryModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  bool get enableFiltering => _enableFiltering;
+  bool get enableFilter => _enableFiltering;
 
-  set enableFiltering(bool val) {
+  set enableFilter(bool val) {
     assert(val != null);
     _enableFiltering = val;
     notifyListeners();

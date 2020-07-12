@@ -27,7 +27,7 @@ class SentenceListScreen extends StatelessWidget {
 
   Widget _buildList() => Consumer<QueryModel>(
         builder: (context, model, child) {
-          if (!model.enableFiltering) return _buildListInner(sentences);
+          if (!model.enableFilter) return _buildListInner(sentences);
 
           var aspectsLower = model.aspects.entries
               .where((e) => e.value)
@@ -58,11 +58,14 @@ class SentenceListScreen extends StatelessWidget {
               style: TextStyle(color: Colors.white),
             ),
             IconButton(
-                icon: Icon(Icons.filter_list),
-                onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => AspectFilterScreen())))
+              icon: Icon(Icons.filter_list),
+              onPressed: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AspectFilterScreen(),
+                ),
+              ),
+            ),
           ],
         ),
       ),
