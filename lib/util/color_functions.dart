@@ -9,8 +9,12 @@ Color determineBarColor(double value, double minVal, double maxVal) {
   final double range = maxVal - minVal;
   final double percentage = 1.0 - (distanceFromMax / range);
 
-  final r = percentage > 0.5 ? 0xe6 - ((percentage - 0.5) * 2.0 * 0xe6).toInt() : 0xe6;
-  final g = percentage < 0.5 ? 0xe6 - ((0.5 - percentage) * 2.0 * 0xe6).toInt() : 0xe6;
+  final r = percentage > 0.5
+      ? 0xe6 - ((percentage - 0.5) * 2.0 * 0xe6).toInt()
+      : 0xe6;
+  final g = percentage < 0.5
+      ? 0xe6 - ((0.5 - percentage) * 2.0 * 0xe6).toInt()
+      : 0xe6;
 
   return Color.fromARGB(0xdd, r, g, 0x0);
 }
