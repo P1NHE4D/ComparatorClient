@@ -17,7 +17,7 @@ class QueryScreen extends StatelessWidget {
             AspectBox(),
           ],
         ),
-      )
+      ),
     );
   }
 }

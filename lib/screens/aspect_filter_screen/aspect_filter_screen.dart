@@ -6,21 +6,22 @@ import 'package:flutter/rendering.dart';
 import 'package:provider/provider.dart';
 
 class AspectFilterScreen extends StatelessWidget {
-
-    Widget _buildList(QueryModel model) {
-        return Column(
-                children: model.aspects.entries.map((entry) =>
-                        ListTile(
-                            title: Text(
-                                    entry.key, style: TextStyle(color: Colors.white)),
-                            trailing: Switch(
-                                value: entry.value,
-                                onChanged: (val) => model.setAspectFilter(entry.key, val),
-                                activeColor: Colors.green
-                            ),
-                        )
-                ).toList());
-    }
+  Widget _buildList(QueryModel model) {
+    return Column(
+      children: model.aspects.entries
+          .map(
+            (entry) => ListTile(
+              title: Text(entry.key, style: TextStyle(color: Colors.white)),
+              trailing: Switch(
+                value: entry.value,
+                onChanged: (val) => model.setAspectFilter(entry.key, val),
+                activeColor: Colors.green,
+              ),
+            ),
+          )
+          .toList(),
+    );
+  }
 
     @override
     Widget build(BuildContext context) {

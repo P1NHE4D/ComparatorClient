@@ -7,9 +7,7 @@ import 'package:flutter/material.dart';
 class AspectResultsBox extends StatelessWidget {
   final Map<String, ClassifiedData> aspectResults;
 
-  AspectResultsBox({
-    @required this.aspectResults
-  });
+  AspectResultsBox({@required this.aspectResults});
 
   @override
   Widget build(BuildContext context) {
@@ -17,30 +15,46 @@ class AspectResultsBox extends StatelessWidget {
       title: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          Text('Aspects', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18)),
+          Text(
+            'Aspects',
+            style: TextStyle(
+                color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18),
+          ),
         ],
       ),
       child: Column(
         children: aspectResults.entries.map((e) {
-          double val = e.value.objATendency > e.value.objBTendency ? -e.value.objATendency + e.value.objBTendency : e.value.objBTendency - e.value.objATendency;
+          double val = e.value.objATendency > e.value.objBTendency
+              ? -e.value.objATendency + e.value.objBTendency
+              : e.value.objBTendency - e.value.objATendency;
           return ComTendencyBar(
-              barColor: Colors.lightBlue,
-              textColor: Colors.white,
-              padding: EdgeInsets.symmetric(vertical: 8, horizontal: 6),
-              title: Text(e.key, style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-              value: val,
-              subTitle: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text((e.value.objATendency * 100).toStringAsFixed(1) + '%', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-                    Text((e.value.objBTendency * 100).toStringAsFixed(1) + '%', style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
-                  ],
+            barColor: Colors.lightBlue,
+            textColor: Colors.white,
+            padding: EdgeInsets.symmetric(vertical: 8, horizontal: 6),
+            title: Text(
+              e.key,
+              style: TextStyle(
+                  color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
+            ),
+            value: val,
+            subTitle: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Text(
+                  (e.value.objATendency * 100).toStringAsFixed(1) + '%',
+                  style: TextStyle(
+                      color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
                 ),
-              );
-          }
-        ).toList(),
+                Text(
+                  (e.value.objBTendency * 100).toStringAsFixed(1) + '%',
+                  style: TextStyle(
+                      color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
+                ),
+              ],
+            ),
+          );
+        }).toList(),
       ),
     );
   }
-
 }
