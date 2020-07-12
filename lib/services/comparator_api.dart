@@ -3,7 +3,8 @@ import 'dart:io';
 import 'package:comparator/models/query_result.dart';
 import 'package:http/http.dart' as http;
 
-Future<QueryResult> sendQuery(String objA, String objB, List<String> aspects, bool quickSearch) async {
+Future<QueryResult> sendQuery(
+    String objA, String objB, List<String> aspects, bool quickSearch) async {
   final Map<String, String> queryParameters = {
     'objA': objA,
     'objB': objB,
@@ -16,13 +17,13 @@ Future<QueryResult> sendQuery(String objA, String objB, List<String> aspects, bo
       HttpHeaders.contentTypeHeader: 'application/json'
     }).timeout(Duration(seconds: 300));
 
-    if(response.statusCode == 200) {
+    if (response.statusCode == 200) {
       return QueryResult.fromJson(response.body);
     }
-    if(response.statusCode == 400) {
+    if (response.statusCode == 400) {
       throw Exception('The query was invalid.');
     }
-    if(response.statusCode >= 500) {
+    if (response.statusCode >= 500) {
       throw Exception('The server is currently unavailable.');
     }
     throw Exception('The query failed.');
