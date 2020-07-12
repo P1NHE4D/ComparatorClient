@@ -5,10 +5,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SearchBox extends StatelessWidget {
-  final TextEditingController _objAcontroller = new TextEditingController();
-  final TextEditingController _objBcontroller = new TextEditingController();
+  final TextEditingController _objAcontroller = TextEditingController();
+  final TextEditingController _objBcontroller = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final RegExp _regExp = new RegExp(r"^\w+$");
+  final RegExp _regExp = RegExp(r"^\w+$");
 
   String _validateInput(String value) {
     if (value.isEmpty) {
