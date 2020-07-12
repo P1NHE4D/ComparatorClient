@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SearchBox extends StatelessWidget {
-  final TextEditingController _objAcontroller = TextEditingController();
-  final TextEditingController _objBcontroller = TextEditingController();
+  final TextEditingController _objAcontroller = new TextEditingController();
+  final TextEditingController _objBcontroller = new TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final RegExp _regExp = new RegExp(r"^\w+$");
 
@@ -59,9 +59,14 @@ class SearchBox extends StatelessWidget {
               ),
               onPressed: () {
                 if (_formKey.currentState.validate()) {
-                  Provider.of<QueryModel>(context, listen: false)
-                      .setObjects(_objAcontroller.text, _objBcontroller.text);
-                  Navigator.pushNamed(context, '/results');
+                  final model = Provider.of<QueryModel>(context, listen: false);
+                  model.setObjects(_objAcontroller.text, _objBcontroller.text);
+                  Navigator.pushNamed(context, '/results').then((val) {
+                    if(model.autoReset) {
+                      _objAcontroller.clear();
+                      _objBcontroller.clear();
+                    }
+                  });
                 }
               },
             )
