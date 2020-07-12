@@ -25,7 +25,6 @@ class AspectFilterScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final model = Provider.of<QueryModel>(context, listen: false);
     return Scaffold(
       backgroundColor: Color.fromARGB(0xff, 0x0, 0x0, 0x0),
       appBar: AppBar(
