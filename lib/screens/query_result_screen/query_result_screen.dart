@@ -90,7 +90,9 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
     return WillPopScope(
       onWillPop: () async {
         final state = Provider.of<QueryModel>(context, listen: false);
-        state.resetModel();
+        if (state.autoReset) {
+          state.resetModel();
+        }
         return true;
       },
       child: Scaffold(
@@ -131,6 +133,8 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
                     if (snapshot.data.aspectResults != null)
                       AspectResultsBox(
                         aspectResults: snapshot.data.aspectResults,
+                        objA: _objA,
+                        objB: _objB,
                       )
                   ],
                 ),
