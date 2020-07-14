@@ -8,14 +8,10 @@ class SearchBox extends StatelessWidget {
   final TextEditingController _objAcontroller = TextEditingController();
   final TextEditingController _objBcontroller = TextEditingController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-  final RegExp _regExp = RegExp(r"^\w+$");
 
   String _validateInput(String value) {
     if (value.isEmpty) {
       return 'Must not be empty';
-    }
-    if (!_regExp.hasMatch(value)) {
-      return 'Only alphanumeric characters allowed.';
     }
     return null;
   }

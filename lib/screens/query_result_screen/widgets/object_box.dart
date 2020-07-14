@@ -33,7 +33,7 @@ class ObjectBox extends StatelessWidget {
         overlay: isDense
             ? null
             : Text(
-                (value ?? 0.0 * 100.0).toStringAsFixed(1) + '%',
+                ((value ?? 0.0) * 100.0).toStringAsFixed(1) + '%',
                 style: TextStyle(color: Colors.white),
               ),
         barColor: color,
