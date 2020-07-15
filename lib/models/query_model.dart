@@ -45,8 +45,7 @@ class QueryModel extends ChangeNotifier {
     notifyListeners();
   }
 
-  UnmodifiableMapView<String, bool> get aspects =>
-      UnmodifiableMapView(_aspects);
+  UnmodifiableMapView<String, bool> get aspects => UnmodifiableMapView(_aspects);
 
   void addAspect(String aspect) {
     setAspectFilter(aspect, true);

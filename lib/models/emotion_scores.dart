@@ -9,8 +9,7 @@ class EmotionScores {
 
   factory EmotionScores.fromJson(Map<String, dynamic> json) {
     if (json == null)
-      return EmotionScores(
-          anger: 0.0, disgust: 0.0, fear: 0.0, joy: 0.0, sadness: 0.0);
+      return EmotionScores(anger: 0.0, disgust: 0.0, fear: 0.0, joy: 0.0, sadness: 0.0);
     return EmotionScores(
         anger: json['anger']?.toDouble() ?? 0.0,
         disgust: json['disgust']?.toDouble() ?? 0.0,

@@ -22,8 +22,7 @@ class SentenceListScreen extends StatelessWidget {
       );
 
   Widget _buildListInner(List<String> sentences) => ListView.builder(
-      itemBuilder: (context, i) => _buildListItem(i, sentences),
-      itemCount: sentences.length);
+      itemBuilder: (context, i) => _buildListItem(i, sentences), itemCount: sentences.length);
 
   Widget _buildList() => Consumer<QueryModel>(
         builder: (context, model, child) {
@@ -35,8 +34,7 @@ class SentenceListScreen extends StatelessWidget {
               .map((aspect) => aspect.toLowerCase())
               .toList();
 
-          bool filter(str) =>
-              aspectsLower.any((a) => str.toLowerCase().contains(a));
+          bool filter(str) => aspectsLower.any((a) => str.toLowerCase().contains(a));
 
           var filteredSentences = sentences.where(filter).toList();
 

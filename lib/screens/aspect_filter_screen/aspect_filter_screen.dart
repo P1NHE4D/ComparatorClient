@@ -46,9 +46,7 @@ class AspectFilterScreen extends StatelessWidget {
                   ),
                   trailing: Switch(
                     value: model.enableFilter,
-                    onChanged: model.aspects.isEmpty
-                        ? null
-                        : (val) => model.enableFilter = val,
+                    onChanged: model.aspects.isEmpty ? null : (val) => model.enableFilter = val,
                     activeColor: Colors.green,
                   ),
                 ),
