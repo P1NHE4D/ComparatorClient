@@ -27,8 +27,10 @@ class ComTextFormField extends StatelessWidget {
       textInputAction: inputAction,
       decoration: InputDecoration(
         border: OutlineInputBorder(
-          borderSide:
-              const BorderSide(color: Color.fromRGBO(82, 82, 82, 1), width: 0),
+          borderSide: const BorderSide(
+            color: Color.fromRGBO(82, 82, 82, 1),
+            width: 0,
+          ),
         ),
         filled: true,
         labelText: label,

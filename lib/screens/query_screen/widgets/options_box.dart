@@ -45,9 +45,10 @@ class OptionsBox extends StatelessWidget {
   Widget build(BuildContext context) {
     return Consumer<QueryModel>(
       builder: (context, model, child) => ComBox(
-        title: Text('Options',
-            style:
-                TextStyle(color: Color.fromRGBO(82, 82, 82, 1), fontSize: 18)),
+        title: Text(
+          'Options',
+          style: TextStyle(color: Color.fromRGBO(82, 82, 82, 1), fontSize: 18),
+        ),
         child: Column(
           children: [
             _buildQuickSearchBtn(model),

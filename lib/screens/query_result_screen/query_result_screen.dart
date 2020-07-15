@@ -63,16 +63,19 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
         ComBox(
-          title: Text('An error occurred',
-              style: TextStyle(
-                  color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18)),
+          title: Text(
+            'An error occurred: ',
+            style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18),
+          ),
           backgroundColor: Color.fromRGBO(48, 48, 48, 1),
           focusColor: Color.fromRGBO(56, 56, 56, 1),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
-              Text(errorMessage,
-                  style: TextStyle(color: Colors.red, fontSize: 16))
+              Text(
+                errorMessage,
+                style: TextStyle(color: Colors.red, fontSize: 16),
+              ),
             ],
           ),
           icon: Icon(
@@ -113,8 +116,7 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
                       dataCount: snapshot.data.results.dataCount,
                       objATendency: snapshot.data.results.objATendency,
                       objBTendency: snapshot.data.results.objBTendency,
-                      elapsedTime: DateTime.fromMillisecondsSinceEpoch(
-                          _elapsedSeconds * 1000),
+                      elapsedTime: DateTime.fromMillisecondsSinceEpoch(_elapsedSeconds * 1000),
                     ),
                     ObjectBox(
                       objName: _objA,
@@ -154,8 +156,9 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
                   SizedBox(height: 10),
                   SizedBox(
                     child: Text(
-                        '${_minutes < 10 ? '0$_minutes' : _minutes}:${_secs < 10 ? '0$_secs' : _secs}',
-                        style: TextStyle(color: Colors.white, fontSize: 16)),
+                      '${_minutes < 10 ? '0$_minutes' : _minutes}:${_secs < 10 ? '0$_secs' : _secs}',
+                      style: TextStyle(color: Colors.white, fontSize: 16),
+                    ),
                   )
                 ],
               ),

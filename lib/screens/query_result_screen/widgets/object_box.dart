@@ -21,15 +21,14 @@ class ObjectBox extends StatelessWidget {
       @required this.emotionScores,
       @required this.sentences});
 
-  List<Widget> _buildProgressBars(
-      double tendency, double sentimentScore, EmotionScores scores) {
-    Widget buildProgressBar(
-        String title, Color color, double value, bool isDense) {
+  List<Widget> _buildProgressBars(double tendency, double sentimentScore, EmotionScores scores) {
+    Widget buildProgressBar(String title, Color color, double value, bool isDense) {
       return ComProgressBar(
         padding: EdgeInsets.symmetric(vertical: 8, horizontal: 4),
-        title: Text(title,
-            style: TextStyle(
-                color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14)),
+        title: Text(
+          title,
+          style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
+        ),
         overlay: isDense
             ? null
             : Text(
@@ -44,13 +43,11 @@ class ObjectBox extends StatelessWidget {
     }
 
     return [
-      buildProgressBar('Popularity', determineBarColor(tendency, 0.0, 1.0),
-          tendency ?? 0.0, false),
+      buildProgressBar('Popularity', determineBarColor(tendency, 0.0, 1.0), tendency ?? 0.0, false),
       ComTendencyBar(
         title: Text(
           'Sentiment Score',
-          style:
-              TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
+          style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
         ),
         value: sentimentScore ?? 0.0,
         barColor: determineBarColor(sentimentScore, -1.0, 1.0),
@@ -60,41 +57,34 @@ class ObjectBox extends StatelessWidget {
           children: [
             Text(
               'Negative',
-              style: TextStyle(
-                  color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
+              style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
             ),
             Text(
               'Neutral',
-              style: TextStyle(
-                  color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
+              style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
             ),
             Text(
               'Positive',
-              style: TextStyle(
-                  color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
+              style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
             ),
           ],
         ),
       ),
-      buildProgressBar(
-          'Anger', Color.fromARGB(0xff, 0x80, 0x0, 0x0), scores.anger, true),
-      buildProgressBar('Disgust', Color.fromARGB(0xff, 0x60, 0x40, 0x0),
-          scores.disgust, true),
-      buildProgressBar(
-          'Fear', Color.fromARGB(0xff, 0x20, 0x0, 0xd0), scores.fear, true),
-      buildProgressBar(
-          'Joy', Color.fromARGB(0xff, 0x05, 0x80, 0x0), scores.joy, true),
-      buildProgressBar('Sadness', Color.fromARGB(0xff, 0x80, 0x0, 0xAE),
-          scores.sadness, true)
+      buildProgressBar('Anger', Color.fromARGB(0xff, 0x80, 0x0, 0x0), scores.anger, true),
+      buildProgressBar('Disgust', Color.fromARGB(0xff, 0x60, 0x40, 0x0), scores.disgust, true),
+      buildProgressBar('Fear', Color.fromARGB(0xff, 0x20, 0x0, 0xd0), scores.fear, true),
+      buildProgressBar('Joy', Color.fromARGB(0xff, 0x05, 0x80, 0x0), scores.joy, true),
+      buildProgressBar('Sadness', Color.fromARGB(0xff, 0x80, 0x0, 0xAE), scores.sadness, true)
     ];
   }
 
   @override
   Widget build(BuildContext context) {
     return ComBox(
-      title: Text(objName,
-          style:
-              TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18)),
+      title: Text(
+        objName,
+        style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18),
+      ),
       backgroundColor: Color.fromRGBO(48, 48, 48, 1),
       focusColor: Color.fromRGBO(60, 60, 60, 1),
       icon: Icon(Icons.list, color: Colors.white,),
