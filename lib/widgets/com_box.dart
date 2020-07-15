@@ -32,18 +32,14 @@ class _ComBoxState extends State<ComBox> {
   Widget _buildComBox() {
     return Container(
       decoration: BoxDecoration(
-          color: _isPressed && widget.focusColor != null
-              ? widget.focusColor
-              : widget.backgroundColor,
+          color:
+              _isPressed && widget.focusColor != null ? widget.focusColor : widget.backgroundColor,
           borderRadius: BorderRadius.all(Radius.circular(20))),
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          Container(
-              width: double.infinity,
-              padding: EdgeInsets.all(12),
-              child: widget.child),
+          Container(width: double.infinity, padding: EdgeInsets.all(12), child: widget.child),
           if (widget.icon != null) widget.icon
         ],
       ),

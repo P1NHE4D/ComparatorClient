@@ -58,7 +58,7 @@ class SearchBox extends StatelessWidget {
                   final model = Provider.of<QueryModel>(context, listen: false);
                   model.setObjects(_objAcontroller.text, _objBcontroller.text);
                   Navigator.pushNamed(context, '/results').then((val) {
-                    if(model.autoReset) {
+                    if (model.autoReset) {
                       _objAcontroller.clear();
                       _objBcontroller.clear();
                     }

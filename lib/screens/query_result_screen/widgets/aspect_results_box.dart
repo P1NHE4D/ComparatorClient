@@ -28,16 +28,14 @@ class AspectResultsBox extends StatelessWidget {
               children: [
                 Text(
                   objA,
-                  style: TextStyle(
-                      color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18),
+                  style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18),
                 ),
               ],
-            )
+            ),
           ),
           Text(
             'vs',
-            style: TextStyle(
-                color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18),
+            style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18),
           ),
           SizedBox(
             width: MediaQuery.of(context).size.width * 0.3,
@@ -46,11 +44,10 @@ class AspectResultsBox extends StatelessWidget {
               children: [
                 Text(
                   objB,
-                  style: TextStyle(
-                      color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18),
+                  style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18),
                 ),
               ],
-            )
+            ),
           ),
         ],
       ),
@@ -65,8 +62,7 @@ class AspectResultsBox extends StatelessWidget {
             padding: EdgeInsets.symmetric(vertical: 8, horizontal: 6),
             title: Text(
               e.key,
-              style: TextStyle(
-                  color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
+              style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
             ),
             value: val,
             subTitle: Row(
@@ -74,13 +70,11 @@ class AspectResultsBox extends StatelessWidget {
               children: [
                 Text(
                   (e.value.objATendency * 100).toStringAsFixed(1) + '%',
-                  style: TextStyle(
-                      color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
+                  style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
                 ),
                 Text(
                   (e.value.objBTendency * 100).toStringAsFixed(1) + '%',
-                  style: TextStyle(
-                      color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
+                  style: TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 14),
                 ),
               ],
             ),

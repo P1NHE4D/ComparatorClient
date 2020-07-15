@@ -46,8 +46,7 @@ class ComProgressBar extends StatelessWidget {
                   Expanded(
                     flex: 1,
                     child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: cornerRadius, color: backgroundColor),
+                      decoration: BoxDecoration(borderRadius: cornerRadius, color: backgroundColor),
                       height: barHeight,
                     ),
                   ),
@@ -59,8 +58,7 @@ class ComProgressBar extends StatelessWidget {
                   Expanded(
                     flex: (value * 100).round(),
                     child: Container(
-                      decoration: BoxDecoration(
-                          borderRadius: cornerRadius, color: barColor),
+                      decoration: BoxDecoration(borderRadius: cornerRadius, color: barColor),
                       height: barHeight,
                     ),
                   ),

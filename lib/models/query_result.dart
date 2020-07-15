@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:comparator/models/classified_data.dart';
 import 'package:comparator/models/emotion_scores.dart';
 import 'package:comparator/models/keyword.dart';
@@ -38,25 +37,26 @@ class QueryResult {
     final _map = jsonDecode(jsonStr);
 
     return QueryResult(
-        results: ClassifiedData.fromJson(_map['results']),
-        objAKeywords: (_map['objAKeywords'] as List)
-            ?.map((i) => Keyword?.fromJson(i))
-            ?.toList(),
-        objBKeywords: (_map['objBKeywords'] as List)
-            ?.map((i) => Keyword?.fromJson(i))
-            ?.toList(),
-        objAEmotions: EmotionScores.fromJson(_map['objAEmotions']),
-        objBEmotions: EmotionScores.fromJson(_map['objBEmotions']),
-        objASentimentScore: _map['objASentimentScore'] ?? 0.0,
-        objBSentimentScore: _map['objBSentimentScore'] ?? 0.0,
-        aspectResults: (_map['aspectResults'] as Map)?.map(
-            (key, value) => MapEntry(key, ClassifiedData?.fromJson(value))),
-        objAAspectEmotions: (_map['objAAspectEmotions'] as Map)?.map(
-            (key, value) => MapEntry(key, EmotionScores?.fromJson(value))),
-        objBAspectEmotions: (_map['objBAspectEmotions'] as Map)?.map(
-            (key, value) => MapEntry(key, EmotionScores?.fromJson(value))),
-        objAAspectSentimentScores: _map['objAAspectSentimentScores'],
-        objBAspectSentimentScores: _map['objBAspectSentimentScores'],
-        message: _map['message']);
+      results: ClassifiedData?.fromJson(_map['results']),
+      objAKeywords: (_map['objAKeywords'] as List)
+          ?.map((i) => Keyword?.fromJson(i))
+          ?.toList(),
+      objBKeywords: (_map['objBKeywords'] as List)
+          ?.map((i) => Keyword?.fromJson(i))
+          ?.toList(),
+      objAEmotions: EmotionScores?.fromJson(_map['objAEmotions']),
+      objBEmotions: EmotionScores?.fromJson(_map['objBEmotions']),
+      objASentimentScore: _map['objASentimentScore'] ?? 0.0,
+      objBSentimentScore: _map['objBSentimentScore'] ?? 0.0,
+      aspectResults: (_map['aspectResults'] as Map)
+          ?.map((key, value) => MapEntry(key, ClassifiedData?.fromJson(value))),
+      objAAspectEmotions: (_map['objAAspectEmotions'] as Map)
+          ?.map((key, value) => MapEntry(key, EmotionScores?.fromJson(value))),
+      objBAspectEmotions: (_map['objBAspectEmotions'] as Map)
+          ?.map((key, value) => MapEntry(key, EmotionScores?.fromJson(value))),
+      objAAspectSentimentScores: _map['objAAspectSentimentScores'],
+      objBAspectSentimentScores: _map['objBAspectSentimentScores'],
+      message: _map['message'],
+    );
   }
 }
