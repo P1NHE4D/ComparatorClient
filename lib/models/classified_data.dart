@@ -5,14 +5,16 @@ class ClassifiedData {
   final List<String> objAData;
   final List<String> objBData;
 
-  ClassifiedData(
-      {this.dataCount,
-      this.objATendency,
-      this.objBTendency,
-      this.objAData,
-      this.objBData});
+  ClassifiedData({
+    this.dataCount,
+    this.objATendency,
+    this.objBTendency,
+    this.objAData,
+    this.objBData,
+  });
 
   factory ClassifiedData.fromJson(Map<String, dynamic> json) {
+    if (json == null) return null;
     return ClassifiedData(
       dataCount: json['dataCount']?.toInt() ?? 0,
       objATendency: json['objATendency']?.toDouble() ?? 0.0,

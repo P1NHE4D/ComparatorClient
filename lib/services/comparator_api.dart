@@ -21,7 +21,7 @@ Future<QueryResult> sendQuery(
       return QueryResult.fromJson(response.body);
     }
     if (response.statusCode == 400) {
-      throw Exception('The query was invalid.');
+      throw Exception(response.body);
     }
     if (response.statusCode >= 500) {
       throw Exception('The server is currently unavailable.');
