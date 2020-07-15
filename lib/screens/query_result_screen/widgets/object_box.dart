@@ -96,6 +96,8 @@ class ObjectBox extends StatelessWidget {
           style:
               TextStyle(color: Color.fromRGBO(174, 174, 174, 1), fontSize: 18)),
       backgroundColor: Color.fromRGBO(48, 48, 48, 1),
+      focusColor: Color.fromRGBO(60, 60, 60, 1),
+      icon: Icon(Icons.list, color: Colors.white,),
       child: Column(
         children: _buildProgressBars(tendency, sentimentScore, emotionScores),
       ),
