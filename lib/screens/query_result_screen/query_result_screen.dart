@@ -57,6 +57,41 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
     });
   }
 
+  Widget _buildResultWidget(AsyncSnapshot snapshot) {
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          ResultBox(
+            dataCount: snapshot.data.results.dataCount,
+            objATendency: snapshot.data.results.objATendency,
+            objBTendency: snapshot.data.results.objBTendency,
+            elapsedTime: DateTime.fromMillisecondsSinceEpoch(_elapsedSeconds * 1000),
+          ),
+          ObjectBox(
+            objName: _objA,
+            tendency: snapshot.data.results.objATendency,
+            sentimentScore: snapshot.data.objASentimentScore,
+            emotionScores: snapshot.data.objAEmotions,
+            sentences: snapshot.data.results.objAData,
+          ),
+          ObjectBox(
+            objName: _objB,
+            tendency: snapshot.data.results.objBTendency,
+            sentimentScore: snapshot.data.objBSentimentScore,
+            emotionScores: snapshot.data.objBEmotions,
+            sentences: snapshot.data.results.objBData,
+          ),
+          if (snapshot.data.aspectResults != null)
+            AspectResultsBox(
+              aspectResults: snapshot.data.aspectResults,
+              objA: _objA,
+              objB: _objB,
+            )
+        ],
+      ),
+    );
+  }
+
   Widget _buildErrorWidget(String errorMessage) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.start,
@@ -88,6 +123,28 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
     );
   }
 
+  Widget _buildLoadingWidget() {
+    return Container(
+      width: double.infinity,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          CircularProgressIndicator(
+            valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
+          ),
+          SizedBox(height: 10),
+          SizedBox(
+            child: Text(
+              '${_minutes < 10 ? '0$_minutes' : _minutes}:${_secs < 10 ? '0$_secs' : _secs}',
+              style: TextStyle(color: Colors.white, fontSize: 16),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return WillPopScope(
@@ -109,60 +166,11 @@ class _QueryResultScreenState extends State<QueryResultScreen> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               _timer.cancel();
-              return SingleChildScrollView(
-                child: Column(
-                  children: [
-                    ResultBox(
-                      dataCount: snapshot.data.results.dataCount,
-                      objATendency: snapshot.data.results.objATendency,
-                      objBTendency: snapshot.data.results.objBTendency,
-                      elapsedTime: DateTime.fromMillisecondsSinceEpoch(_elapsedSeconds * 1000),
-                    ),
-                    ObjectBox(
-                      objName: _objA,
-                      tendency: snapshot.data.results.objATendency,
-                      sentimentScore: snapshot.data.objASentimentScore,
-                      emotionScores: snapshot.data.objAEmotions,
-                      sentences: snapshot.data.results.objAData,
-                    ),
-                    ObjectBox(
-                      objName: _objB,
-                      tendency: snapshot.data.results.objBTendency,
-                      sentimentScore: snapshot.data.objBSentimentScore,
-                      emotionScores: snapshot.data.objBEmotions,
-                      sentences: snapshot.data.results.objBData,
-                    ),
-                    if (snapshot.data.aspectResults != null)
-                      AspectResultsBox(
-                        aspectResults: snapshot.data.aspectResults,
-                        objA: _objA,
-                        objB: _objB,
-                      )
-                  ],
-                ),
-              );
+              return _buildResultWidget(snapshot);
             } else if (snapshot.hasError) {
               return _buildErrorWidget(snapshot.error.toString());
             }
-            return Container(
-              width: double.infinity,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  CircularProgressIndicator(
-                    valueColor: new AlwaysStoppedAnimation<Color>(Colors.white),
-                  ),
-                  SizedBox(height: 10),
-                  SizedBox(
-                    child: Text(
-                      '${_minutes < 10 ? '0$_minutes' : _minutes}:${_secs < 10 ? '0$_secs' : _secs}',
-                      style: TextStyle(color: Colors.white, fontSize: 16),
-                    ),
-                  )
-                ],
-              ),
-            );
+            return _buildLoadingWidget();
           },
         ),
       ),
