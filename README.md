@@ -6,6 +6,14 @@ the application uses an extensive elastic search data set to retrieve an array o
 relate to the given query data and analyses them using a custom-built classifier as well as the
 natural-language processor by IBM watson to determine which object is perceived to be better.
 
+<div style="display: inline-block">
+  <img src="https://raw.githubusercontent.com/P1NHE4D/ComparatorClient/master/media/QueryScreen.png" height="300px"/>
+  <img src="https://raw.githubusercontent.com/P1NHE4D/ComparatorClient/master/media/QueryResultScreen1.png" height="300px"/>
+  <img src="https://raw.githubusercontent.com/P1NHE4D/ComparatorClient/master/media/QueryResultScreen2.png" height="300px"/>
+  <img src="https://raw.githubusercontent.com/P1NHE4D/ComparatorClient/master/media/FilterScreen.png" height="300px"/>
+  <img src="https://raw.githubusercontent.com/P1NHE4D/ComparatorClient/master/media/SentenceListScreen.png" height="300px"/>
+</div>
+
 ## Contents
 
 1. [Architecture](#architecture)
