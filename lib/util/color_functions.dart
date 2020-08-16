@@ -5,6 +5,7 @@ Color determineBarColor(double value, double minVal, double maxVal) {
   minVal = minVal ?? 0.0;
   maxVal = maxVal ?? 1.0;
 
+  value = value > maxVal ? maxVal : value < minVal ? minVal : value;
   final double distanceFromMax = maxVal - value;
   final double range = maxVal - minVal;
   final double percentage = 1.0 - (distanceFromMax / range);
